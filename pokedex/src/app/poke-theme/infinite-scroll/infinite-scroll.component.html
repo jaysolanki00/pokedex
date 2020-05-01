@@ -1,0 +1,12 @@
+<div class="container-fluid"
+infiniteScroll
+[infiniteScrollDistance]="2"
+[infiniteScrollThrottle]="50"
+(scrolled)="onScroll()">
+  <div class="row">
+    <div class="col-sm-6 col-md-4 pt-5 " [ngClass]="{'offset-md-4 offset-sm-3': pokeList.length == 1}" *ngFor="let pokemon of pokeList">
+      <poke-card [miniPokemon]="pokemon" *ngIf="pokemon && pokemon.url"
+        (pokemonDetails)="setPokeDetailsInArray($event)"></poke-card>
+    </div>
+  </div>
+</div>

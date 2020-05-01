@@ -16,6 +16,10 @@ export class PokeService {
     return this.http.get(ServiceConfig.generatePokeAPIURL()) as Observable<PokeList>;
   }
 
+  getNextPokeList(nextURL): Observable<PokeList> {
+    return this.http.get(nextURL) as Observable<PokeList>;
+  }
+
   getPokeDetails(url: string): Observable<Pokemon> {
     return this.http.get(url) as Observable<Pokemon>;
   }

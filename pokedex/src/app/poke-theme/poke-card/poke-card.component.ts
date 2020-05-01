@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Pokemon, MiniPokeList } from 'src/app/shared/Models/PokeTypes';
 import { PokeService } from '../poke.service';
 
@@ -10,7 +10,11 @@ import { PokeService } from '../poke.service';
 export class PokeCardComponent implements OnInit {
 
   public pokemon: Pokemon;
+  public pokemonArray: Array<Pokemon> = [];
+
   @Input() miniPokemon: MiniPokeList;
+  @Output() pokemonDetails = new EventEmitter();
+
 
   constructor(private pokeService: PokeService) { }
 
@@ -22,9 +26,10 @@ export class PokeCardComponent implements OnInit {
     this.pokeService.getPokeDetails(this.miniPokemon.url).subscribe(
       response => {
         this.pokemon = response;
+        this.pokemonDetails.emit(response);
       },
       console.log
-    )
+    );
   }
 
 }
