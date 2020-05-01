@@ -1,3 +1,25 @@
+@font-face {
+    font-family: 'Pokemon Solid';
+    src: url('/assets/fonts/PokemonSolidNormal.woff2') format('woff2'),
+        url('/assets/fonts/PokemonSolidNormal.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pokemon Hollow';
+    src: url('/assets/fonts/PokemonHollowNormal.woff2') format('woff2'),
+        url('/assets/fonts/PokemonHollowNormal.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+@primary-font: 'Pokemon Hollow';
+
+@secondary-font: 'Pokemon Solid';
+
 @font-poke-xxs: 4px;
 
 @font-poke-xs: 8px;
@@ -17,3 +39,63 @@
 @font-poke-xl: 36px;
 
 @font-poke-xxl: 40px;
+
+
+
+// font-sizes
+
+.font-xxs{
+    font-size: @font-poke-xxs;
+  }
+  .font-xs{
+    font-size: @font-poke-xs;
+  }
+  .font-s{
+    font-size: @font-poke-s;
+  }
+  .font-sm{
+    font-size: @font-poke-sm;
+  }
+  .font-m{
+    font-size: @font-poke-m;
+  }
+  .font-md{
+    font-size: @font-poke-md;
+  }
+  .font-l{
+    font-size: @font-poke-l;
+  }
+  .font-lg{
+    font-size: @font-poke-lg;
+  }
+  .font-xl{
+    font-size: @font-poke-xl;
+  }
+  .font-xxl{
+    font-size: @font-poke-xxl;
+  }
+
+.apply-poke-font-hollow() {
+    font-family: @primary-font, @secondary-font, 'SANS';
+    font-weight: normal;
+    font-style: normal;
+}
+
+.poke-font-hollow{
+    .apply-poke-font-hollow();
+}
+
+.apply-poke-font-dark() {
+    font-family: @secondary-font, @primary-font, 'SANS';
+    font-weight: normal;
+    font-style: normal;
+}
+
+.poke-font-dark{
+    .apply-poke-font-dark();
+}
+
+.poke-card-title{
+    font-size: @font-poke-xxl;
+    .apply-poke-font-hollow();
+}

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PokeService } from './poke.service';
 import { PokeList, MiniPokeList } from '../shared/Models/PokeTypes';
+import { AppConstants } from '../shared/constants/app-constants';
 
 @Component({
   selector: 'poke-theme',
@@ -15,7 +16,7 @@ export class PokeThemeComponent implements OnInit {
   constructor(private pokeService: PokeService) { }
 
   ngOnInit() {
-    this.isLight = true;
+    this.isLight = JSON.parse(localStorage.getItem(AppConstants.viewPreference));
     this.getPokeList();
   }
 
@@ -26,7 +27,12 @@ export class PokeThemeComponent implements OnInit {
         this.pokeList = response.results;
       },
       console.log
-    )
+    );
+  }
+
+  toggleTheme() {
+    this.isLight = !this.isLight;
+    localStorage.setItem(AppConstants.viewPreference, JSON.stringify(this.isLight));
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Pokemon } from 'src/app/shared/Models/PokeTypes';
+import { Pokemon, MiniPokeList } from 'src/app/shared/Models/PokeTypes';
+import { PokeService } from '../poke.service';
 
 @Component({
   selector: 'poke-card',
@@ -8,11 +9,22 @@ import { Pokemon } from 'src/app/shared/Models/PokeTypes';
 })
 export class PokeCardComponent implements OnInit {
 
-  @Input() pokemon: Pokemon;
+  public pokemon: Pokemon;
+  @Input() miniPokemon: MiniPokeList;
 
-  constructor() { }
+  constructor(private pokeService: PokeService) { }
 
   ngOnInit() {
+    this.getPokeDetails();
+  }
+
+  getPokeDetails() {
+    this.pokeService.getPokeDetails(this.miniPokemon.url).subscribe(
+      response => {
+        this.pokemon = response;
+      },
+      console.log
+    )
   }
 
 }

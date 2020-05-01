@@ -4,12 +4,12 @@
     "directive-selector": [
       true,
       "attribute",
-      "app"
+      "poke"
     ],
     "component-selector": [
       true,
       "element",
-      "app",
+      "poke",
       "kebab-case"
     ]
   }
