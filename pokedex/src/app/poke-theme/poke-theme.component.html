@@ -1,0 +1,19 @@
+<div [ngClass]="{ 'light-bg' : isLight, 'dark-bg' : !isLight  }">
+  
+  <nav class="font-xxl" >
+    <div class="d-inline">
+      pokeFan Brand
+    </div>
+    <!-- <a class="btn float-right theme-selector-btn" [ngClass]="{ 'bg-dark text-white' : isLight, 'bg-light text-dark' : !isLight}"
+      (click)="isLight=!isLight">{{isLight ? 'Dark' : 'Light'}} Theme</a> -->
+  </nav>
+</div>
+
+<div class="container" >
+  <div class="row">
+    <div class="col-sm-4" *ngFor="let pokemon of pokeList" >
+      <poke-card [pokemon]="pokemon" ></poke-card>  
+    </div>
+  </div>
+</div>
+

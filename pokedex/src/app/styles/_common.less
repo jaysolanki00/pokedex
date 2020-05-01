@@ -1,0 +1,116 @@
+@import './_colors.less';
+@import './_typography.less';
+@import './_theme.less';
+
+body {
+  margin: 0;
+}
+
+.light-bg {
+  .getLightTheme();
+  background-color: @theme-poke-primary-bg;
+  color: @theme-poke-primary-color;
+}
+
+.dark-bg {
+  .getDarkTheme();
+  background-color: @theme-poke-primary-bg;
+  color: @theme-poke-primary-color;
+}
+
+// font-sizes
+
+.font-xxs{
+  font-size: @font-poke-xxs;
+}
+.font-xs{
+  font-size: @font-poke-xs;
+}
+.font-s{
+  font-size: @font-poke-s;
+}
+.font-sm{
+  font-size: @font-poke-sm;
+}
+.font-m{
+  font-size: @font-poke-m;
+}
+.font-md{
+  font-size: @font-poke-md;
+}
+.font-l{
+  font-size: @font-poke-l;
+}
+.font-lg{
+  font-size: @font-poke-lg;
+}
+.font-xl{
+  font-size: @font-poke-xl;
+}
+.font-xxl{
+  font-size: @font-poke-xxl;
+}
+
+// // overwriting Bootstrap classes
+
+// // nav bar overwriting
+
+// .bg-primary{
+//   background-color: @color-poke-primary-blue !important;
+// }
+// .bg-secondary{
+//   background-color: @color-poke-secondary-blue !important;
+// }
+
+// .nav-link{
+//   color: @color-poke-white !important;
+
+// }
+
+// .nav-link:hover{
+//   cursor: pointer;
+//   border: 1px solid @color-poke-nav-unselected;
+//   border-radius: 6px;
+//   text-align: center;
+//   width: 100%;
+//   border-color: @color-poke-nav-unselected;
+//   padding: 7px 8px 7px 8px;
+//   transition: border .1s
+// }
+
+// .nav-link:focus, .nav-link:active, .nav-link:visited {
+//   border-bottom: 2px solid;
+// }
+
+// // setting primary buttons
+
+// .poke-btn-primary{
+//   background-color: @color-poke-orange;
+//   border-color: @color-poke-orange;
+//   color: @color-poke-white
+// }
+
+// .poke-btn-primary-lg {
+//   background-color: @color-poke-orange;
+//   border-color: @color-poke-orange;
+//   font-weight: bold;
+//   width: 180px;
+//   font-size: 20px;
+//   max-block-size: 40px;
+//   color: @color-poke-white;
+//   padding: 4px;
+// }
+// .poke-btn-primary-lg:hover  {
+//   color: @color-poke-white
+// }
+// .poke-btn-primary:hover{
+//   color: @color-poke-white
+
+// }
+// // primary buttons end here
+
+// // text align classes
+
+// .text-align-right{
+//   text-align: right;
+// }
