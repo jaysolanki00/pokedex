@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { PokeList, Pokemon } from 'src/app/shared/Models/PokeTypes';
+import { PokeList, Pokemon, MiniPokeList } from 'src/app/shared/Models/PokeTypes';
 import { AppConstants } from 'src/app/shared/constants/app-constants';
 
 @Component({
@@ -9,8 +9,10 @@ import { AppConstants } from 'src/app/shared/constants/app-constants';
 })
 export class InfiniteScrollComponent implements OnInit {
 
-  @Input() pokeList: PokeList;
+  @Input() pokeList: Array<MiniPokeList>;
+  @Input() isLight: boolean;
   @Output() scrolled = new EventEmitter();
+
   public pokemonArray: Array<Pokemon> = [];
 
 

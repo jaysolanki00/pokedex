@@ -6,7 +6,8 @@ export class AppConstants {
     pokeFailSafeUrl: 'https://pokeapi.co/api/v2/pokemon/'
   };
 
-  public static viewPreference = 'isPokeViewLight';
+  public static themePreference = 'isPokeViewLight';
+  public static viewPreference = 'isPokeViewGrid';
 
   public static pokeOffsetLimit = 20;
 

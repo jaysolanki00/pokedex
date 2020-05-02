@@ -1,5 +1,5 @@
 <div class="card ">
-  <div *ngIf="pokemon.sprites.front_default ; else defaultPokeImage" class="text-center" >
+  <div *ngIf="pokemon?.sprites?.front_default ; else defaultPokeImage" class="text-center" >
     <!-- <img class="card-img-left" *ngIf="pokemon" [src]="pokemon.sprites.back_default" [alt]="miniPokemon.name+ ' back_default'"> -->
     <img class="card-img-right" *ngIf="pokemon" [src]="pokemon.sprites.front_default" [alt]="miniPokemon.name+ ' front_default'">
 
@@ -35,11 +35,13 @@
 
 <ng-template #pokeAbilities>
   <div class="font-m"><span class="poke-card-label" >Abilities: </span> 
-  <span class="text-capitalize" *ngFor="let pokeAbility of pokemon.abilities; let i = index">{{pokeAbility.ability.name}}{{ i === pokemon.abilities.length-1 ? '.' : ',' }} </span>
+  <span class="text-capitalize" *ngFor="let pokeAbility of pokemon.abilities; let i = index"> <span *ngIf="!pokeAbility.is_hidden"> {{pokeAbility.ability.name}}{{ i === pokemon.abilities.length-1 ? '.' : ',' }}</span></span>
 </div>
 </ng-template>
 
 <ng-template #defaultPokeImage>
-  <img src="/assets/pokeballFavicon.png/" alt="">
+  <div class="text-center">
+    <img class="card-img-right" src="/assets/pokeballFavicon.png/" alt="">    
+  </div>
 </ng-template>
 

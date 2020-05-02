@@ -1,25 +1,25 @@
+<poke-loadingspinner [isLoading]="isInitialLoading"></poke-loadingspinner>
 <div id="theme-applier" [ngClass]="{ 'light-bg' : isLight, 'dark-bg' : !isLight  }" >
-  
   <nav class="font-xxl poke-font-hollow" >
     <div class="d-inline">
       Welcome PokeFan
     </div>
     <a class="btn float-right theme-selector-btn" [ngClass]="{ 'bg-dark text-white' : isLight, 'bg-light text-dark' : !isLight}"
       (click)="toggleTheme()">{{isLight ? 'Dark' : 'Light'}} Theme</a>
+      
   </nav>
-  <div class="font-xxl poke-font-hollow"*ngIf="isInitialLoading">
-    Loading..
-  </div>
-  <div class="form-group justify-content-center text-center">
-    <input type="search" class="poke-search-input" (input)="pokeList = pokeFindAcc == '' ? currentPokeList : pokeList" name="pokeFinder" id="pokeFinderInput" [(ngModel)]="pokeFindAcc" placeholder="Poke Search ">
-    <button class="btn btn-warning" [disabled]="!pokeFindAcc" (click)="pokeSearch()" > Search </button>
-  </div>
-  <poke-infinite-scroll *ngIf="pokeList?.length > 0; else noPokemonAvailable" [pokeList]="pokeList" (scrolled)="getNextPokeList($event)" ></poke-infinite-scroll>
+  <form>
+    <div class="form-group justify-content-center text-center">
+      <input type="search" class="poke-search-input" (input)="pokeList = pokeFindAcc == '' ? currentPokeList : pokeList" name="pokeFinder" id="pokeFinderInput" [(ngModel)]="pokeFindAcc" placeholder="Poke Search ">
+      <button class="btn btn-warning" type="submit" [disabled]="!pokeFindAcc" (click)="pokeSearch()" > Search </button>
+    </div>  
+  </form>
+
+  <poke-infinite-scroll *ngIf="pokeList?.length > 0; else noPokemonAvailable" [isLight]="isLight" [pokeList]="pokeList" (scrolled)="getNextPokeList($event)" ></poke-infinite-scroll>
   
 </div>
 
 <ng-template #noPokemonAvailable>
 <div class="front-error-message">{{errorMessage}}</div>
 </ng-template>
-
 

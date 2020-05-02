@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PokeService } from './poke.service';
 import { PokeList, MiniPokeList, Pokemon } from '../shared/Models/PokeTypes';
 import { AppConstants } from '../shared/constants/app-constants';
+import { CommonUtils } from '../shared/constants/commonUtils';
 
 @Component({
   selector: 'poke-theme',
@@ -23,7 +24,7 @@ export class PokeThemeComponent implements OnInit {
   constructor(private pokeService: PokeService) { }
 
   ngOnInit() {
-    this.isLight = JSON.parse(localStorage.getItem(AppConstants.viewPreference));
+    this.isLight = JSON.parse(localStorage.getItem(AppConstants.themePreference));
     this.isInitialLoading = true;
     this.getPokeList();
   }
@@ -35,6 +36,7 @@ export class PokeThemeComponent implements OnInit {
         this.pokeResponse = response;
         this.pokeList = response.results.filter((p, i) => i < 20 );
         this.currentPokeList = response.results.filter((p, i) => i < 20 );
+        const a = CommonUtils.sortArrayByKey(response.results, 'name');
       },
        e => {
         this.serviceCallToGetNextList(AppConstants.APIURLS.pokeFailSafeUrl);
@@ -45,7 +47,7 @@ export class PokeThemeComponent implements OnInit {
 
   toggleTheme() {
     this.isLight = !this.isLight;
-    localStorage.setItem(AppConstants.viewPreference, JSON.stringify(this.isLight));
+    localStorage.setItem(AppConstants.themePreference, JSON.stringify(this.isLight));
   }
 
   getNextPokeList(pokemons: Array<Pokemon>) {

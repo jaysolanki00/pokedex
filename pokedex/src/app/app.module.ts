@@ -11,13 +11,15 @@ import { InfiniteScrollComponent } from './poke-theme/infinite-scroll/infinite-s
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { PokeService } from './poke-theme/poke.service';
+import { LoadingspinnerComponent } from './shared/templates/loadingspinner/loadingspinner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PokeThemeComponent,
     PokeCardComponent,
-    InfiniteScrollComponent
+    InfiniteScrollComponent,
+    LoadingspinnerComponent,
   ],
   imports: [
     BrowserModule,

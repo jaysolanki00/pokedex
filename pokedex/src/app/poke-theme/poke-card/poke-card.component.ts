@@ -23,13 +23,19 @@ export class PokeCardComponent implements OnInit {
   }
 
   getPokeDetails() {
-    this.pokeService.getPokeDetails(this.miniPokemon.url).subscribe(
-      response => {
-        this.pokemon = response;
-        this.pokemonDetails.emit(response);
-      },
-      console.log
-    );
-  }
+    if(this.pokeService.pokeMasterData && this.miniPokemon) {
+      this.pokemon = this.pokeService.pokeMasterData.find(poke => poke.name == this.miniPokemon.name );
+      console.log('Found in master', this.pokemon);
+    }
+    if (!this.pokemon) {
+      this.pokeService.getPokeDetails(this.miniPokemon.url).subscribe(
+        response => {
+          this.pokemon = response;
+          this.pokemonDetails.emit(response);
+        },
+        console.log
+      );
+    }
+    }
 
 }
