@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PokeList, Pokemon } from 'src/app/shared/Models/PokeTypes';
+import { AppConstants } from 'src/app/shared/constants/app-constants';
 
 @Component({
   selector: 'poke-infinite-scroll',
@@ -28,6 +29,9 @@ export class InfiniteScrollComponent implements OnInit {
       this.pokemonArray.push(pokemon);
     } else if (!(this.pokemonArray.find(poke => poke.id === pokemon.id ))) {
       this.pokemonArray.push(pokemon);
+    }
+    if(this.pokemonArray.length == AppConstants.pokeOffsetLimit ){
+      this.scrolled.emit(this.pokemonArray);
     }
   }
 

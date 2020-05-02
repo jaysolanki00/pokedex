@@ -18,6 +18,7 @@ export class PokeThemeComponent implements OnInit {
   public pokeFindAcc: string;
   public pokemonArray: Array<Pokemon>;
   public currentPokeList: Array<MiniPokeList>;
+  public errorMessage: string;
 
   constructor(private pokeService: PokeService) { }
 
@@ -32,10 +33,12 @@ export class PokeThemeComponent implements OnInit {
       response => {
         this.currentPokeResponse = response;
         this.pokeResponse = response;
-        this.pokeList = response.results;
-        this.currentPokeList = response.results;
+        this.pokeList = response.results.filter((p, i) => i < 20 );
+        this.currentPokeList = response.results.filter((p, i) => i < 20 );
       },
-      console.log,
+       e => {
+        this.serviceCallToGetNextList(AppConstants.APIURLS.pokeFailSafeUrl);
+      },
       () => this.isInitialLoading = false
     );
   }
@@ -47,30 +50,37 @@ export class PokeThemeComponent implements OnInit {
 
   getNextPokeList(pokemons: Array<Pokemon>) {
     this.pokemonArray = pokemons;
-    if (this.currentPokeResponse && this.currentPokeResponse.next && (this.pokeFindAcc == '' || !this.pokeFindAcc )) {
-      this.pokeService.getNextPokeList(this.currentPokeResponse.next).subscribe(
-        response => {
-          this.currentPokeResponse = response;
-          this.pokeResponse.next = response.next;
-          this.pokeResponse.previous = response.previous;
-          this.pokeResponse.results = this.pokeResponse.results.concat(response.results);
-          this.pokeList = this.pokeList.concat(response.results);
-          this.currentPokeList = this.currentPokeList.concat(response.results);
-        },
-        console.log
-      );
+    this.pokeService.pokeMasterData = this.pokemonArray;
+    console.log(this.pokeService.pokeMasterData);
+    if ((this.pokeFindAcc == '' || !this.pokeFindAcc )) {
+      const nextURL = this.currentPokeResponse.next ? this.currentPokeResponse.next : AppConstants.APIURLS.pokeNextUrl;
+      this.serviceCallToGetNextList(nextURL);
     }
   }
 
+  serviceCallToGetNextList(nextURL) {
+    this.pokeService.getNextPokeList(nextURL).subscribe(
+      response => {
+        this.currentPokeResponse = response;
+        this.pokeResponse.next = response.next;
+        this.pokeResponse.previous = response.previous;
+        this.pokeResponse.results = this.pokeResponse.results.concat(response.results);
+        this.pokeList = this.pokeList.concat(response.results);
+      },
+      console.log
+    );
+  }
+
   pokeSearch() {
-    if (this.currentPokeList && this.currentPokeList.length > 0 && this.pokeFindAcc) {
-      this.pokeList = this.currentPokeList.filter( poke => poke.name.toLowerCase().includes(this.pokeFindAcc.toLowerCase()) );
+    const results = this.pokeService.pokeMiniMasterList.results;
+    if (results && results.length > 0 && this.pokeFindAcc) {
+      this.pokeList = results.filter( (poke, i) => poke.name.toLowerCase().includes(this.pokeFindAcc.toLowerCase()) ||
+        String(i) == this.pokeFindAcc );
       if (this.pokeList.length <= 0) {
-        console.log('Search API');
-        
+        this.errorMessage = 'No Results Found !';
       }
-    }else if (this.pokeFindAcc == '') {
-      this.pokeList = this.currentPokeList
+    } else if (this.pokeFindAcc == '') {
+      this.pokeList = this.currentPokeList;
     }
   }
 }

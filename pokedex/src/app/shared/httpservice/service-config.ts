@@ -7,7 +7,7 @@ export class ServiceConfig {
 
   public static generatePokeAPIURL( endRequest ?: string ) {
     const server = AppConstants.APIURLS.pokemonAPI + 'pokemon/';
-    return endRequest ? server + endRequest : server;
+    return endRequest ? server + endRequest : server + '?offset=0&limit=964';
   }
 
 }

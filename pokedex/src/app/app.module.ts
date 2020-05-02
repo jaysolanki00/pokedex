@@ -8,6 +8,9 @@ import { PokeThemeComponent } from './poke-theme/poke-theme.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PokeCardComponent } from './poke-theme/poke-card/poke-card.component';
 import { InfiniteScrollComponent } from './poke-theme/infinite-scroll/infinite-scroll.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { PokeService } from './poke-theme/poke.service';
 
 @NgModule({
   declarations: [
@@ -22,9 +25,10 @@ import { InfiniteScrollComponent } from './poke-theme/infinite-scroll/infinite-s
     FormsModule,
     // ReactiveFormsModule,
     HttpClientModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [],
+  providers: [PokeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -55,7 +55,7 @@ export class Pokemon {
     is_default: boolean;
     location_area_encounters: string;
     name: string;
-    order: 1;
+    order: number;
     species: MiniPokeList;
     sprites: {
         back_default: string;
