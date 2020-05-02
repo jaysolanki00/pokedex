@@ -1,14 +1,19 @@
 <div class="card ">
-  <img class="card-img-top" *ngIf="pokemon" [src]="pokemon.sprites.front_default" [alt]="miniPokemon.name+ ' front_default'">
-<!-- working images starts here -->
-  <!-- <img class="card-img-top" *ngIf="pokemon" [src]="pokemon.sprites.back_default" [alt]="miniPokemon.name+ ' back_default'">
-  <img class="card-img-top" *ngIf="pokemon" [src]="pokemon.sprites.back_shiny" [alt]="miniPokemon.name+ ' back_shiny'">
-  <img class="card-img-top" *ngIf="pokemon" [src]="pokemon.sprites.front_shiny" [alt]="miniPokemon.name+ ' front_shiny'"> -->
-<!-- working images ends here -->
-    <!-- <img class="card-img-top" *ngIf="pokemon" [src]="pokemon.sprites.back_female" [alt]="miniPokemon.name+ ' back_female'"> -->
-  <!-- <img class="card-img-top" *ngIf="pokemon" [src]="pokemon.sprites.front_shiny_female" [alt]="miniPokemon.name+ ' front_shiny_female'"> -->
-    <!-- <img class="card-img-top" *ngIf="pokemon" [src]="pokemon.sprites.back_shiny_female" [alt]="miniPokemon.name+ ' back_shiny_female'"> -->
-  <!-- <img class="card-img-top" *ngIf="pokemon" [src]="pokemon.sprites.front_female" [alt]="miniPokemon.name+ ' front_female'"> -->
+  <div *ngIf="pokemon.sprites.front_default ; else defaultPokeImage" class="text-center" >
+    <!-- <img class="card-img-left" *ngIf="pokemon" [src]="pokemon.sprites.back_default" [alt]="miniPokemon.name+ ' back_default'"> -->
+    <img class="card-img-right" *ngIf="pokemon" [src]="pokemon.sprites.front_default" [alt]="miniPokemon.name+ ' front_default'">
+
+    <!-- working images starts here -->
+      <!-- <img class="card-img-top" *ngIf="pokemon" [src]="pokemon.sprites.back_default" [alt]="miniPokemon.name+ ' back_default'">
+      <img class="card-img-top" *ngIf="pokemon" [src]="pokemon.sprites.back_shiny" [alt]="miniPokemon.name+ ' back_shiny'">
+      <img class="card-img-top" *ngIf="pokemon" [src]="pokemon.sprites.front_shiny" [alt]="miniPokemon.name+ ' front_shiny'"> -->
+    <!-- working images ends here -->
+        <!-- <img class="card-img-top" *ngIf="pokemon" [src]="pokemon.sprites.back_female" [alt]="miniPokemon.name+ ' back_female'"> -->
+      <!-- <img class="card-img-top" *ngIf="pokemon" [src]="pokemon.sprites.front_shiny_female" [alt]="miniPokemon.name+ ' front_shiny_female'"> -->
+        <!-- <img class="card-img-top" *ngIf="pokemon" [src]="pokemon.sprites.back_shiny_female" [alt]="miniPokemon.name+ ' back_shiny_female'"> -->
+      <!-- <img class="card-img-top" *ngIf="pokemon" [src]="pokemon.sprites.front_female" [alt]="miniPokemon.name+ ' front_female'"> -->
+    
+  </div>
   <div class="card-body">
     <h5 class="card-title poke-card-title">{{miniPokemon.name}}</h5>
     <div *ngIf="pokemon">
@@ -33,3 +38,8 @@
   <span class="text-capitalize" *ngFor="let pokeAbility of pokemon.abilities; let i = index">{{pokeAbility.ability.name}}{{ i === pokemon.abilities.length-1 ? '.' : ',' }} </span>
 </div>
 </ng-template>
+
+<ng-template #defaultPokeImage>
+  <img src="/assets/pokeballFavicon.png/" alt="">
+</ng-template>
+
