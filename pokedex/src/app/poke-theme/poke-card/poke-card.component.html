@@ -17,8 +17,8 @@
   <div class="card-body">
     <h5 class="card-title poke-card-title">{{miniPokemon.name}}</h5>
     <div *ngIf="pokemon">
-      <div class="font-m" ><span class="poke-card-label" >Weight: </span><span>{{pokemon.weight}}</span></div>
-      <div class="font-m" ><span class="poke-card-label" >Height: </span><span *ngIf="pokemon?.height">{{pokemon.height*100/1000}} m</span></div>
+      <p class="font-m" ><span class="poke-card-label" >Weight: </span><span>{{pokemon.weight}}</span></p>
+      <p class="font-m" ><span class="poke-card-label" >Height: </span><span *ngIf="pokemon?.height">{{pokemon.height*100/1000}} m</span></p>
       <ng-container *ngTemplateOutlet="pokeTypes"></ng-container>
       <ng-container *ngTemplateOutlet="pokeAbilities"></ng-container>
 
@@ -27,16 +27,18 @@
 </div>
 
 <ng-template #pokeTypes>
-  <span class="font-m poke-card-label">Type: </span>
-  <span *ngFor="let pokeType of pokemon.types">
-    <span class="poke-type-{{pokeType.type.name}} ">{{pokeType.type.name}} </span>
-  </span>
+  <p>
+    <span class="font-m poke-card-label">Type:</span>
+    <span *ngFor="let pokeType of pokemon.types">
+      <span class="poke-type-{{pokeType.type.name}} ml-2">{{pokeType.type.name}} </span>
+    </span>  
+  </p>
 </ng-template>
 
 <ng-template #pokeAbilities>
-  <div class="font-m"><span class="poke-card-label" >Abilities: </span> 
+  <p class="font-m"><span class="poke-card-label" >Abilities: </span> 
   <span class="text-capitalize" *ngFor="let pokeAbility of pokemon.abilities; let i = index"> <span *ngIf="!pokeAbility.is_hidden"> {{pokeAbility.ability.name}}{{ i === pokemon.abilities.length-1 ? '.' : ',' }}</span></span>
-</div>
+</p>
 </ng-template>
 
 <ng-template #defaultPokeImage>
