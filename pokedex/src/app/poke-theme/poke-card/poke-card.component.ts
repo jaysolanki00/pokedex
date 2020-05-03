@@ -25,7 +25,6 @@ export class PokeCardComponent implements OnInit {
   getPokeDetails() {
     if(this.pokeService.pokeMasterData && this.pokeService.pokeMasterData.length > 0 && this.miniPokemon) {
       this.pokemon = this.pokeService.pokeMasterData.find(poke => poke.name == this.miniPokemon.name );
-      console.log('Found in master', this.pokemon);
     }
     if (!this.pokemon) {
       this.pokeService.getPokeDetails(this.miniPokemon.url).subscribe(

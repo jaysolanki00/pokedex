@@ -72,3 +72,31 @@ export class Pokemon {
     weight: number;
     moves: Array<PokeMoves>
 }
+
+// TODO add pokeTypes response model
+/*
+
+damage_relations: {double_damage_from: Array(3), double_damage_to: Array(5), half_damage_from: Array(3), half_damage_to: Array(5), no_damage_from: Array(0), …}
+game_indices: (6) [{…}, {…}, {…}, {…}, {…}, {…}]
+generation: {name: "generation-i", url: "https://pokeapi.co/api/v2/generation/1/"}
+id: 2
+move_damage_class: {name: "physical", url: "https://pokeapi.co/api/v2/move-damage-class/2/"}
+moves: (44) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+name: "fighting"
+names: (7) [{…}, {…}, {…}, {…}, {…}, {…}, {…}]
+pokemon: (64) 
+
+*/
+
+export class PokeTypeResponse {
+    damage_relations:any;
+    game_indices: any;
+    generation: any;
+    id: number;
+    move_damage_class: any;
+    moves: any;
+    name: string;
+    names: string;
+    pokemon: Array<{pokemon: MiniPokeList}>;
+
+}
