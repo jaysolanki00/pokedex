@@ -26,11 +26,13 @@
       </div>
 
       <div class="col-12 col-sm-4 col-md-6">
-        <label for="typeSelector" class="font-weight-bold" >Type: </label>
-        <select class="poke-search-input mt-2 ml-1 mt-sm-0 float-sm-right" id="typeSelector" *ngIf="pokeTypesList" [(ngModel)]="selectedPokeType" (change)="getPokemonByType()" >
-          <option [ngValue]="'default'" selected >Default</option>
-          <option class="text-capitalize" *ngFor="let pokeType of pokeTypesList" [ngValue]="pokeType" #typeList >{{pokeType.name}}</option>
-        </select>
+        <div class="float-sm-right" *ngIf="pokeTypesList" >
+          <label for="typeSelector" class="font-weight-bold" >Type: </label>
+          <select class="poke-search-input mt-2 ml-1 mt-sm-0" id="typeSelector" [(ngModel)]="selectedPokeType" (change)="getPokemonByType()" >
+            <option [ngValue]="'default'" selected >Default</option>
+            <option class="text-capitalize" *ngFor="let pokeType of pokeTypesList" [ngValue]="pokeType" #typeList >{{pokeType.name}}</option>
+          </select>            
+        </div>
         <div class="d-sm-none d-inline float-right" >
           <ng-container *ngTemplateOutlet="themeBtn"></ng-container>
         </div>

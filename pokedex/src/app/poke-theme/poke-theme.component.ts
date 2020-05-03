@@ -34,7 +34,7 @@ export class PokeThemeComponent implements OnInit {
       window.pageYOffset is not supported below IE 9.
     */
     const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-    this.iscrollToTopBtn = scrollPosition >= 500;
+    this.iscrollToTopBtn = scrollPosition >= 2000;
   }
 
   constructor(private pokeService: PokeService) { }

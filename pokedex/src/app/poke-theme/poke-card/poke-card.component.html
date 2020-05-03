@@ -4,12 +4,11 @@
 <ng-template #pokeTile>
   <div class="poke-card-wrapper" [ngClass]="{'poke-card-disabled' : isDisabled}">
 
-    <div class="poke-card-top-left-badge" *ngIf="pokemon?.order">
-        {{pokemon?.order}}
-    </div>
-    <div class="poke-card-top-left-badge-img" *ngIf="topLeftBadgeImg">
+    <!-- <div class="poke-card-top-left-badge" *ngIf="pokemon?.order">
+    </div> -->
+    <!-- <div class="poke-card-top-left-badge-img" *ngIf="topLeftBadgeImg">
         <img src="{{topLeftBadgeImg}}" class="img-inherit" alt="">
-    </div>
+    </div> -->
     <!-- <div class="poke-card-top-right-badge" *ngIf="topRightBadgeIcon || topRightBadgeText">
         <span class="{{topRightBadgeIcon}} prxs"></span>{{topRightBadgeText}}
     </div> -->
