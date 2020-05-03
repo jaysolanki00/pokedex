@@ -28,7 +28,7 @@ import { LoadingspinnerComponent } from './shared/templates/loadingspinner/loadi
     // ReactiveFormsModule,
     HttpClientModule,
     InfiniteScrollModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('sw.js', { enabled: environment.production })
   ],
   providers: [PokeService],
   bootstrap: [AppComponent]
