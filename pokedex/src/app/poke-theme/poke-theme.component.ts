@@ -120,8 +120,7 @@ export class PokeThemeComponent implements OnInit {
         console.log,
         () => {this.isLoading = false; }
       );
-    } else if (typeof this.selectedPokeType == 'string' && this.selectedPokeType == 'default') {
-      console.log('default');
+    } else if (typeof this.selectedPokeType == 'string' && this.selectedPokeType == 'none') {
       this.pokeList = this.currentPokeList;
     }
   }

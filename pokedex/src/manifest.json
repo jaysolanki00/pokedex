@@ -1,6 +1,6 @@
 {
-  "name": "pokedex",
-  "short_name": "pokedex",
+  "name": "Pokédex",
+  "short_name": "Pokédex",
   "theme_color": "#212121",
   "background_color": "#fafafa",
   "display": "standalone",
