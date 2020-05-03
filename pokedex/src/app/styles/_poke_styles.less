@@ -1,105 +1,392 @@
 @import './_colors.less';
+@import './_typography.less';
+
 
 .poke-type-tile(){
-    text-transform: capitalize;
-    padding: 10px;
-    border-radius: 5px;
-    color: white;
-  }
-  
-  .poke-type-poison {
-    .poke-type-tile();
-    background-color: @color-poke-type-poison;
-  }
-  
-  .poke-type-grass {
-    .poke-type-tile();
-    background-color: @color-poke-type-grass;
+  .poke-type-tile-font();
+  text-transform: capitalize;
+  padding: 10px;
+  border-radius: 5px;
+  color:  @color-poke-type;
+}
 
-    background: #6cbe31;
-  }
-  
-  .poke-type-fire {
-    .poke-type-tile();
-    background-color: @color-poke-type-fire;
+.poke-type-poison {
+  .poke-type-tile();
+  background-color: @color-poke-type-poison;
+}
 
-    background: #e34f1a;
+.poke-type-grass {
+  .poke-type-tile();
+  background-color: @color-poke-type-grass;
+}
+
+.poke-type-fire {
+  .poke-type-tile();
+  background-color: @color-poke-type-fire;
+}
+
+.poke-type-water {
+  .poke-type-tile();
+  background-color: @color-poke-type-water;
+}
+
+.poke-type-flying {
+  .poke-type-tile();
+  background-color: @color-poke-type-flying;
+}
+
+.poke-type-bug {
+  .poke-type-tile();
+  background-color: @color-poke-type-bug;
+}
+
+.poke-type-normal {
+  .poke-type-tile();
+  background-color: @color-poke-type-normal;
+}
+
+.poke-type-electric {
+  .poke-type-tile();
+  background-color: @color-poke-type-electric;
+}
+
+.poke-type-ground {
+  .poke-type-tile();
+  background-color: @color-poke-type-ground;
+}
+
+.poke-type-fairy {
+  .poke-type-tile();
+  background-color: @color-poke-type-fairy;
+}
+
+.poke-type-fighting {
+  .poke-type-tile();
+  background-color: @color-poke-type-fighting;
+}
+
+.poke-type-psychic {
+  .poke-type-tile();
+  background-color: @color-poke-type-psychic;
+}
+
+.poke-type-rock {
+  .poke-type-tile();
+  background-color: @color-poke-type-rock;
+}
+
+.poke-type-steel {
+  .poke-type-tile();
+  background-color: @color-poke-type-steel;
+}
+
+.poke-type-dark {
+  .poke-type-tile();
+  background-color: @color-poke-type-dark;
+}
+
+.poke-type-dragon {
+  .poke-type-tile();
+  background-color: @color-poke-type-dragon;
+}
+
+.poke-type-ghost {
+  .poke-type-tile();
+  background-color: @color-poke-type-ghost;
+}
+
+.poke-type-ice {
+  .poke-type-tile();
+  background-color: @color-poke-type-ice;
+}
+
+// poke cards starts here
+// @import(reference, less) "../../assets/fonts/iconfonts/style.css";
+
+.poke-card-outer-container {
+  width: 100%;
+  padding: 11px;
+}
+
+// .poke-modal-tile-masonry {
+//   display: inline-block;
+//   &:focus {
+//       outline: none;
+//   }
+// }
+
+.poke-card-wrapper {
+  width: 240px;
+  margin: 15px;
+  position: relative;
+  border-radius: 8px;
+  display: inline-block;
+  transition: all 0.5s ease-in-out;
+  -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.05);
+  border: 1px solid transparent;
+  // cursor: pointer;
+  &:hover, &:active, &:focus {
+      outline: none;
   }
-  
-  .poke-type-water {
-    .poke-type-tile();
-    background-color: @color-poke-type-water;
-  }
-  
-  .poke-type-flying {
-    .poke-type-tile();
-    background-color: @color-poke-type-flying;
-  }
-  
-  .poke-type-bug {
-    .poke-type-tile();
-    background-color: @color-poke-type-bug;
-  }
-  
-  .poke-type-normal {
-    .poke-type-tile();
-    background-color: @color-poke-type-normal;
-  }
-  
-  .poke-type-electric {
-    .poke-type-tile();
-    background-color: @color-poke-type-electric;
-  }
-  
-  .poke-type-ground {
-    .poke-type-tile();
-    background-color: @color-poke-type-ground;
-  }
-  
-  .poke-type-fairy {
-    .poke-type-tile();
-    background-color: @color-poke-type-fairy;
-  }
-  
-  .poke-type-fighting {
-    .poke-type-tile();
-    background-color: @color-poke-type-fighting;
-  }
-  
-  .poke-type-psychic {
-    .poke-type-tile();
-    background-color: @color-poke-type-psychic;
-  }
-  
-  .poke-type-rock {
-    .poke-type-tile();
-    background-color: @color-poke-type-rock;
-  }
-  
-  .poke-type-steel {
-    .poke-type-tile();
-    background-color: @color-poke-type-steel;
-  }
-  
-  .poke-type-dark {
-    .poke-type-tile();
-    background-color: @color-poke-type-dark;
+}
+
+.poke-card-top-left-badge {
+  width: 32px;
+  height: 32px;
+  // background: green;
+  // color: white;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 32px;
+  margin-top: -8px;
+  margin-left: -8px;
+  position: absolute;
+}
+
+.poke-card-top-right-badge {
+  .poke-card-top-left-badge;
+  width: auto;
+  right: -4px;
+  border-radius: 16px;
+  padding: 0 8px;
+  position: absolute;
+  // background: orange;
+  z-index: 1;
+}
+
+.poke-card-image {
+  width: 100%;
+  height: 100px;
+  // background: white;
+  text-align: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  img {
+      height: 96px;
+      width: 96px;
+      object-fit: cover;
+      overflow: hidden;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
   }
 
-  .poke-type-dragon {
-    .poke-type-tile();
-    background-color: @color-poke-type-dragon;
+  .placeholder-icon {
+      line-height: 184px;
   }
+}
 
-  .poke-type-ghost {
-    .poke-type-tile();
-    background-color: @color-poke-type-ghost;
-  }
+.poke-body-icon-right-btm-badge {
+  border-radius: 50%;
+  position: absolute;
+  right: 3px;
+  bottom: 6px;
+  width: 12px;
+  height: 12px;
+  // background: orange;
+}
+.poke-card-body {
+  width: 100%;
+  height: 246px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding: 2px;
+}
 
-  .poke-type-ice {
-    .poke-type-tile();
-    background-color: @color-poke-type-ice;
+// .poke-card-body-icon-wrapper {
+//   display: inline-block;
+//   width: 48px;
+//   vertical-align: top;
+//   padding: 8px;
+//   position: relative;
+
+//   .placeholder-icon {
+//       // .icon-size-3;
+//       position: relative;
+//   }
+// }
+
+.poke-card-body-text-wrapper {
+  display: inline-block;
+  width: ~"calc(100% - 48px)";
+  &:after {
+      background: linear-gradient(270deg, #fafafa 0%, transparent 50%);
+      position: absolute;
+      content: "";
+      width: 192px;
+      margin-top: -46px;
+      display: inline-block;
   }
- 
- 
-  
+}
+
+.poke-card-body-title {
+  text-align: center;
+  margin-top: 6px;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.poke-card-body-desc {
+  width: 100%;
+  white-space: pre-wrap;
+  text-overflow: ellipsis;
+  margin-left: 8px;
+  div {
+    margin-top: 4px
+  }
+}
+
+.poke-card-body-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.poke-card-disabled {
+  .placeholder-icon, .poke-card-body-title, .poke-card-body-desc {
+      color: white;
+  }
+}
+
+.poke-card-move-image {
+  img {
+      position: absolute;
+      top: 56px;
+      left: 56px;
+      height: 128px;
+      width: 128px;
+      border-radius: 50%;
+
+      // .transition(all 0.5s ease-in-out);
+  }
+}
+
+.poke-card-top-left-badge-img {
+  width: 32px;
+  height: 32px;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 32px;
+  margin-top: 4px;
+  margin-left: 4px;
+  position: absolute;
+}
+
+.no-results-found {
+  // .poke-text-style-a;
+}
+
+// @media only screen and (max-width:599px) {
+//     .poke-card-wrapper {
+//         // width: calc(100vw - 86px);
+//     }
+
+//     .poke-card-image {
+//         // height: calc(100vw - 86px - 86px);
+
+//         img {
+//             // height: calc(100vw - 86px - 86px);
+//         }
+
+//         .placeholder-icon {
+//             line-height: calc(100vw - 86px - 86px);
+//         }
+//     }
+// }
+
+// @media only screen and (min-width:600px) and (max-width:959px) {
+//     .poke-card-wrapper {
+//         // width: calc(100vw - 128px - 86px);
+//     }
+
+//     .poke-card-image {
+//         height: calc(50vw - 128px - 86px);
+
+//         img {
+//             height: calc(50vw - 128px - 86px);
+//         }
+
+//         .placeholder-icon {
+//             line-height: calc(50vw - 128px - 86px);
+//         }
+//     }
+// }
+
+// @media only screen and (min-width:960px) and (max-width:1023px) {
+//     .poke-card-wrapper {
+//         width: calc(((100vw - 192px)/2) );
+//     }
+
+//     .poke-card-image {
+//         height: calc(((100vw - 192px)/2)  );
+
+//         img {
+//             height: calc(((100vw - 192px)/2)  );
+//         }
+
+//         .placeholder-icon {
+//             line-height: calc(((100vw - 192px)/2)  );
+//         }
+//     }
+// }
+
+// @media only screen and (min-width:1024px) and (max-width:1279px) {
+//     .poke-card-wrapper {
+//         width: calc(((100vw - 192px)/5) );
+//     }
+
+//     .poke-card-image {
+//         height: calc(((100vw - 192px)/5)  );
+
+//         img {
+//             height: calc(((100vw - 192px)/5)  );
+//         }
+
+//         .placeholder-icon {
+//             line-height: calc(((100vw - 192px)/5)  );
+//         }
+//     }
+// }
+
+// @media only screen and (min-width:1280px) and (max-width:1551px) {
+//     .poke-card-wrapper {
+//         width: calc(((100vw - 192px)/5));
+//     }
+
+//     .poke-card-image {
+//         height: calc(((100vw - 192px)/5));
+
+//         img {
+//             height: calc(((100vw - 192px)/5));
+//         }
+
+//         .placeholder-icon {
+//             line-height: calc(((100vw - 192px)/5));
+//         }
+//     }
+// }
+
+// @media only screen and (min-width:1552px) {
+//     .poke-card-wrapper {
+//         width: calc(((100vw - 192px)/5) );
+//     }
+
+//     .poke-card-image {
+//         height: calc(((100vw - 192px)/5)  );
+
+//         img {
+//             height: calc(((100vw - 192px)/5)  );
+//         }
+
+//         .placeholder-icon {
+//             line-height: calc(((100vw - 192px)/5)  );
+//         }
+//     }
+// }
+
+

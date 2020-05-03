@@ -1,12 +1,11 @@
-<poke-loadingspinner [isLoading]="isInitialLoading"></poke-loadingspinner>
 <div id="theme-applier" [ngClass]="{ 'light-bg' : isLight, 'dark-bg' : !isLight  }" >
+  <poke-loadingspinner [isLoading]="isInitialLoading"></poke-loadingspinner>
   <nav class="font-xxl poke-font-hollow" >
     <div class="d-inline">
       Welcome PokeFan
     </div>
     <a class="btn float-right theme-selector-btn" [ngClass]="{ 'bg-dark text-white' : isLight, 'bg-light text-dark' : !isLight}"
       (click)="toggleTheme()">{{isLight ? 'Dark' : 'Light'}} Theme</a>
-      
   </nav>
   <form>
     <div class="form-group justify-content-center text-center">
