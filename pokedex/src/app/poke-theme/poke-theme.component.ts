@@ -64,7 +64,7 @@ export class PokeThemeComponent implements OnInit {
   getNextPokeList(pokemons: Array<Pokemon>) {
     this.pokemonArray = pokemons;
     this.pokeService.pokeMasterData = this.pokemonArray;
-    console.log(this.pokeService.pokeMasterData);
+    console.log(this.pokeService.pokeMasterData.length);
     if ((this.pokeFindAcc == '' || !this.pokeFindAcc ) && !this.selectedPokeType) {
       const nextURL = this.currentPokeResponse.next ? this.currentPokeResponse.next : AppConstants.APIURLS.pokeNextUrl;
       this.serviceCallToGetNextList(nextURL);
@@ -79,11 +79,12 @@ export class PokeThemeComponent implements OnInit {
   serviceCallToGetNextList(nextURL) {
     this.pokeService.getNextPokeList(nextURL).subscribe(
       response => {
+        this.pokeList = this.currentPokeList;
         this.currentPokeResponse = response;
         this.pokeResponse.next = response.next;
         this.pokeResponse.previous = response.previous;
         this.pokeResponse.results = this.pokeResponse.results.concat(response.results);
-        this.pokeList = this.pokeList.concat(response.results);
+        this.currentPokeList = this.currentPokeList.concat(response.results);
       },
       console.log
     );
