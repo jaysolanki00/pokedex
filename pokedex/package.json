@@ -4,10 +4,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build_prod": "npm run build && browserify -s main dist/pokedex/runtime**js dist/pokedex/es2015**js dist/pokedex/polyfills**js dist/pokedex/main**js > dist/pokedex/bundle.js && npm run minify",
+    "minify": "uglifyjs dist/pokedex/bundle.js --screw-ie8 --compress --mangle --output dist/pokedex/bundle.min.js"
   },
   "private": true,
   "dependencies": {
@@ -26,6 +28,7 @@
     "ngx-infinite-scroll": "^8.0.2",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
+    "uglify-js": "^3.9.2",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
