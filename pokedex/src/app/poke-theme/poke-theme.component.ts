@@ -121,7 +121,6 @@ export class PokeThemeComponent implements OnInit {
       this.pokeService.getPokemonByType(this.selectedPokeType.url).subscribe(
         response => {
           this.pokeList = response.filter((p, i) => i < this.displayCount );
-          this.currentPokeList = response.filter((p, i) => i < this.displayCount );
           if(this.pokeList.length == 0 ) {
             this.errorMessage = 'No Results Found !';
           }
