@@ -14,8 +14,8 @@
         <span class="{{topRightBadgeIcon}} prxs"></span>{{topRightBadgeText}}
     </div> -->
     <div class="poke-card-image">
-        <div>
-            <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{{pokemon?.pokedexNumber}}.png" *ngIf="pokemon?.pokedexNumber?.length < 4 ; else defaultPokeImage" alt="">
+        <div *ngIf="pokemon?.pokedexNumber != null && pokemon?.pokedexNumber?.length < 4; else defaultPokeImage">
+            <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{{pokemon?.pokedexNumber}}.png"  alt="">
                   <!-- working images starts here -->
         <!-- <img class="card-img-top" *ngIf="pokemon" [src]="pokemon.sprites.back_default" [alt]="miniPokemon.name+ ' back_default'">
         <img class="card-img-top" *ngIf="pokemon" [src]="pokemon.sprites.back_shiny" [alt]="miniPokemon.name+ ' back_shiny'">
