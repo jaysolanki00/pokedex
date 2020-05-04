@@ -10,7 +10,7 @@ import { CommonUtils } from '../shared/constants/commonUtils';
   styleUrls: ['./poke-theme.component.less']
 })
 export class PokeThemeComponent implements OnInit {
-
+  public displayCount = 20;
   public isLight: boolean;
   public currentPokeResponse: PokeList;
   private pokeResponse: PokeList;
@@ -65,9 +65,14 @@ export class PokeThemeComponent implements OnInit {
     this.pokemonArray = pokemons;
     this.pokeService.pokeMasterData = this.pokemonArray;
     console.log(this.pokeService.pokeMasterData);
-    if ((this.pokeFindAcc == '' || !this.pokeFindAcc )) {
+    if ((this.pokeFindAcc == '' || !this.pokeFindAcc ) && !this.selectedPokeType) {
       const nextURL = this.currentPokeResponse.next ? this.currentPokeResponse.next : AppConstants.APIURLS.pokeNextUrl;
       this.serviceCallToGetNextList(nextURL);
+    } else if ((this.pokeFindAcc == '' || !this.pokeFindAcc ) && this.selectedPokeType) {
+      const pokeMiniTypes = this.pokeService.pokeTypeMiniList;
+      const currentPokeCount = this.pokeList.length;
+      const nextList = pokeMiniTypes.filter((p, i) => i >= currentPokeCount && i < currentPokeCount + this.displayCount)
+      this.pokeList = this.pokeList.concat(nextList);
     }
   }
 
@@ -86,8 +91,10 @@ export class PokeThemeComponent implements OnInit {
 
   pokeSearch() {
     const results = this.pokeService.pokeMiniMasterList.results;
+    this.selectedPokeType = null;
     if (results && results.length > 0 && this.pokeFindAcc) {
-      this.pokeList = results.filter( (poke, i) => poke.name.toLowerCase().includes(this.pokeFindAcc.toLowerCase()) );
+      this.pokeList = results.filter( (poke, i) => poke.name.toLowerCase().includes(this.pokeFindAcc.toLowerCase())
+      || i == Number(this.pokeFindAcc) - 1 );
       if (this.pokeList.length <= 0) {
         this.errorMessage = 'No Results Found !';
       }
@@ -108,14 +115,16 @@ export class PokeThemeComponent implements OnInit {
   }
 
   getPokemonByType() {
+    this.pokeFindAcc = null;
     if (this.selectedPokeType && this.selectedPokeType.url) {
       this.isLoading = true;
       this.pokeService.getPokemonByType(this.selectedPokeType.url).subscribe(
         response => {
-          console.log(response);
-          this.pokeList = response.pokemon.map((p, i) => { if (i < 20 ) {return  p.pokemon; }});
-          // this.currentPokeList = response.pokemon.map((p, i) => { if (i < 20 ) {return  p.pokemon; }});
-          // this.pokeListSuccessForHugeData(response)
+          this.pokeList = response.filter((p, i) => i < this.displayCount );
+          this.currentPokeList = response.filter((p, i) => i < this.displayCount );
+          if(this.pokeList.length == 0 ) {
+            this.errorMessage = 'No Results Found !';
+          }
         },
         console.log,
         () => {this.isLoading = false; }
@@ -125,21 +134,21 @@ export class PokeThemeComponent implements OnInit {
     }
   }
 
-  pokeListSuccessForHugeData (response) {
+  pokeListSuccessForHugeData(response) {
 
     this.currentPokeResponse = response;
     this.pokeResponse = response;
-    this.pokeList = response.results.filter((p, i) => i < 20 );
-    this.currentPokeList = response.results.filter((p, i) => i < 20 );
+    this.pokeList = response.results.filter((p, i) => i < this.displayCount );
+    this.currentPokeList = response.results.filter((p, i) => i < this.displayCount );
   }
 
 
   // TODO: Cross browsing
   gotoTop() {
-    window.scroll({ 
-      top: 0, 
-      left: 0, 
-      behavior: 'smooth' 
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
     });
   }
 

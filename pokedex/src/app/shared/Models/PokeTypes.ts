@@ -70,7 +70,8 @@ export class Pokemon {
     stats: Array<BaseStat>;
     types: Array<PokeType>;
     weight: number;
-    moves: Array<PokeMoves>
+    moves: Array<PokeMoves>;
+    pokedexNumber: string;
 }
 
 // TODO add pokeTypes response model

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { PokeList, Pokemon, PokeTypeResponse } from '../shared/Models/PokeTypes';
+import { PokeList, Pokemon, PokeTypeResponse, MiniPokeList } from '../shared/Models/PokeTypes';
 import { ServiceConfig } from '../shared/httpservice/service-config';
 import { map } from 'rxjs/operators';
 import { AppConstants } from '../shared/constants/app-constants';
@@ -14,6 +14,7 @@ export class PokeService {
 
   public pokeMasterData: Array<Pokemon>;
   public pokeMiniMasterList: PokeList;
+  public pokeTypeMiniList: Array<MiniPokeList>;
 
   constructor(private http: HttpClient) { }
 
@@ -32,12 +33,15 @@ export class PokeService {
     return this.http.get(url) as Observable<Pokemon>;
   }
 
-  getPokeTypesList() : Observable<PokeList> {
+  getPokeTypesList(): Observable<PokeList> {
     return this.http.get(AppConstants.APIURLS.pokeTypeUrl) as Observable<PokeList>;
   }
 
-  getPokemonByType(nextURL): Observable<PokeTypeResponse> {
-    return this.http.get(nextURL) as Observable<PokeTypeResponse>;
+  getPokemonByType(nextURL): Observable<Array<MiniPokeList>> {
+    return this.http.get(nextURL).pipe(map((response: PokeTypeResponse) => {
+      this.pokeTypeMiniList = response.pokemon.map(_ => _.pokemon);
+      return this.pokeTypeMiniList;
+    })) as Observable<Array<MiniPokeList>>;
   }
 
 }

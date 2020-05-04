@@ -23,7 +23,7 @@
       <div class="col-12 col-sm-8 col-md-6 d-inline">
         <form>
           <input type="search" class="poke-search-input" (input)="pokeList = pokeFindAcc == '' ? currentPokeList : pokeList" name="pokeFinder" id="pokeFinderInput" [(ngModel)]="pokeFindAcc" placeholder="Poke Search ">
-          <button class="btn btn-warning" type="submit" [disabled]="!pokeFindAcc" (click)="pokeSearch()" > Search </button>    
+          <button class="btn btn-warning btn-poke-warning" type="submit" [disabled]="!pokeFindAcc" (click)="pokeSearch()" > Search </button>    
         </form>
       </div>
 

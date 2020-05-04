@@ -30,6 +30,11 @@ export class PokeCardComponent implements OnInit {
       this.pokeService.getPokeDetails(this.miniPokemon.url).subscribe(
         response => {
           this.pokemon = response;
+          if (response.id) {
+            const orderStr = String(response.id);
+            this.pokemon.pokedexNumber = orderStr.length == 1 ? `00${orderStr}` :
+            orderStr.length == 2 ? `0${orderStr}` : orderStr ;
+          } 
           this.pokemonDetails.emit(response);
         },
         console.log

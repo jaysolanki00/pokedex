@@ -4,8 +4,9 @@
 <ng-template #pokeTile>
   <div class="poke-card-wrapper" [ngClass]="{'poke-card-disabled' : isDisabled}">
 
-    <!-- <div class="poke-card-top-left-badge" *ngIf="pokemon?.order">
-    </div> -->
+    <div class="poke-card-top-left-badge" *ngIf="pokemon?.pokedexNumber">
+      #{{pokemon?.pokedexNumber}}
+    </div>
     <!-- <div class="poke-card-top-left-badge-img" *ngIf="topLeftBadgeImg">
         <img src="{{topLeftBadgeImg}}" class="img-inherit" alt="">
     </div> -->
@@ -14,7 +15,7 @@
     </div> -->
     <div class="poke-card-image">
         <div>
-            <img src="{{pokemon?.sprites?.front_default}}" *ngIf="pokemon?.sprites?.front_default; else defaultPokeImage" alt="">
+            <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{{pokemon?.pokedexNumber}}.png" *ngIf="pokemon?.pokedexNumber?.length < 4 ; else defaultPokeImage" alt="">
                   <!-- working images starts here -->
         <!-- <img class="card-img-top" *ngIf="pokemon" [src]="pokemon.sprites.back_default" [alt]="miniPokemon.name+ ' back_default'">
         <img class="card-img-top" *ngIf="pokemon" [src]="pokemon.sprites.back_shiny" [alt]="miniPokemon.name+ ' back_shiny'">
@@ -34,13 +35,12 @@
             <!-- <div class="poke-card-body-desc">{{description}}</div> -->
         </div>
         <div *ngIf="pokemon" class="poke-card-body-desc">
-          <ng-container *ngTemplateOutlet="pokeTypes"></ng-container>
           <ng-container *ngTemplateOutlet="pokeAbilities"></ng-container>
           <ng-container>
-            <div class="font-m" ><span class="poke-card-label" >Weight: </span><span>{{pokemon.weight * 100/1000}} kg</span></div>
-            <div class="font-m" ><span class="poke-card-label" >Height: </span><span *ngIf="pokemon?.height">{{pokemon.height*100/1000}} m</span></div>
+            <div class="font-sm" ><span class="poke-card-label" >Weight: </span><span>{{pokemon.weight * 100/1000}} kg</span></div>
+            <div class="font-sm" ><span class="poke-card-label" >Height: </span><span *ngIf="pokemon?.height">{{pokemon.height*100/1000}} m</span></div>
           </ng-container>
-          
+          <ng-container *ngTemplateOutlet="pokeTypes"></ng-container>
             <!-- <img class="poke-card-body-icon" src="{{image}}" *ngIf="image; else defaultProfilePic" alt=""> -->
             <!-- <span class="poke-body-icon-right-btm-badge" *ngIf="topRightBadgeIcon"></span> -->
         </div>
@@ -57,7 +57,7 @@
 </ng-template>
 
 <ng-template #pokeAbilities>
-  <div class="font-m"><span class="poke-card-label" >Abilities: </span> 
+  <div class="font-sm"><span class="poke-card-label" >Abilities: </span> 
   <span class="text-capitalize" *ngFor="let pokeAbility of pokemon.abilities; let i = index"> <span *ngIf="!pokeAbility.is_hidden"> {{pokeAbility.ability.name}}{{ i === pokemon.abilities.length-1 ? '.' : ',' }}</span></span>
   </div>
 </ng-template>
@@ -70,8 +70,8 @@
 
 
 <ng-template #pokeTypes>
-  <div>
-    <span class="font-m poke-card-label">Type:</span>
+  <div class="mt-2">
+    <span class="font-sm poke-card-label">Type:</span>
     <span *ngFor="let pokeType of pokemon.types">
       <span class="poke-type-{{pokeType.type.name}} ml-2">{{pokeType.type.name}} </span>
     </span>  
