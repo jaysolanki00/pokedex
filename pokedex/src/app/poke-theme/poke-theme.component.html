@@ -18,24 +18,22 @@
 </ng-template>
 
 <ng-template #userActions>
-  <div class="container-fluid">
+  <div class="container-fluid user-actions">
     <div class="row">
-      <div class="col-12 col-sm-8 col-md-6 d-inline">
+      <div class="col-12 col-sm-6 col-md-6 d-inline">
         <form>
           <input type="search" class="poke-search-input" (input)="pokeList = pokeFindAcc == '' ? currentPokeList : pokeList" name="pokeFinder" id="pokeFinderInput" [(ngModel)]="pokeFindAcc" placeholder="Poke Search ">
-          <button class="btn btn-warning btn-poke-warning" type="submit" [disabled]="!pokeFindAcc" (click)="pokeSearch()" > Search </button>    
+          <button class="btn btn-warning btn-poke-warning" type="submit" [disabled]="!pokeFindAcc" (click)="userSelectedAction(userSelectedActions.search)" > Search </button>    
         </form>
       </div>
-
-      <div class="col-12 col-sm-4 col-md-6">
-        <div class="float-sm-right d-inline" *ngIf="pokeTypesList" >
-          <label for="typeSelector" class="font-weight-bold" >Type: </label>
-            <select class="poke-search-input mt-2 ml-1 mt-sm-0 text-capitalize" id="typeSelector" [(ngModel)]="selectedPokeType" (change)="getPokemonByType()" >
-            <option value="none" >None</option>
-            <option class="text-capitalize" *ngFor="let pokeType of pokeTypesList" [ngValue]="pokeType" #typeList >{{pokeType.name}}</option>
-          </select>            
+      <div class="col-12 col-sm-6 col-md-6">
+        <div class="float-sm-left d-inline" *ngIf="pokeTypesList" >
+          <ng-container *ngTemplateOutlet="typeSelectorTemplate"></ng-container>
         </div>
-        <div class="d-sm-none d-inline float-right" >
+        <div class="d-sm-right d-inline float-right" *ngIf="unsortedMiniPokemon" >
+          <ng-container *ngTemplateOutlet="sortTemplate"></ng-container>
+        </div>
+        <div class="d-sm-none d-inline float-right"  >
           <ng-container *ngTemplateOutlet="themeBtn"></ng-container>
         </div>
       </div>  
@@ -54,7 +52,25 @@
 <div class="front-error-message">{{errorMessage}}</div>
 </ng-template>
 
+<ng-template #typeSelectorTemplate>
+  <label for="typeSelector" class="font-weight-bold" >Type: </label>
+    <select class="poke-search-input mt-2 ml-1 mt-sm-0 text-capitalize" id="typeSelector" [(ngModel)]="selectedPokeType" (change)="userSelectedAction(userSelectedActions.type)" >
+    <option value="none" >None</option>
+    <option class="text-capitalize" *ngFor="let pokeType of pokeTypesList" [ngValue]="pokeType" #typeList >{{pokeType.name}}</option>
+  </select>
+</ng-template>
+
+
 <ng-template #themeBtn>
   <a class="btn theme-selector-btn float-sm-right poke-font-hollow" [ngClass]="{ 'bg-dark text-white' : isLight, 'bg-light text-dark' : !isLight}"
   (click)="toggleTheme()">{{isLight ? 'Dark' : 'Light'}} Theme</a>
+</ng-template>
+
+<ng-template #sortTemplate>
+  <label for="sortSelector" class="font-weight-bold" >Sort: </label>
+  <select class="poke-search-input mt-2 ml-1 mt-sm-0 text-capitalize" id="sortSelector" [(ngModel)]="selectedPokeSort" (change)="userSelectedAction(userSelectedActions.sort)" >
+  <option value="none" >None</option>
+  <option class="text-capitalize" value="ascending" #typeList >Name: Ascending</option>
+  <option class="text-capitalize" value="descending" #typeList >Name: Descending</option>
+</select>
 </ng-template>

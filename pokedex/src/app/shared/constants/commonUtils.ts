@@ -5,11 +5,13 @@ export class CommonUtils {
       return nextURL.split('/').pop();
     }
 
-    public static sortArrayByKey = (arrayToSort: Array<any>, key: string) => {
+    // ascending sort by default
+    public static sortArrayByKey = (arrayToSort: Array<any>, key: string, isDescending ?: boolean) => {
       const sortedArray = arrayToSort.sort( (current, next) => {
         current = current[key].toLowerCase();
         next = next[key].toLowerCase();
-        return current < next ? -1 : current > next ? 1 : 0;
+        return isDescending ? current > next ? -1 : current < next ? 1 : 0 :
+        current < next ? -1 : current > next ? 1 : 0;
       });
       return sortedArray;
     }
