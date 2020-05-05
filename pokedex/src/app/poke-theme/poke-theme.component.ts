@@ -118,7 +118,7 @@ export class PokeThemeComponent implements OnInit {
     this.pokeService.getPokeTypesList().subscribe(
       response => {
         this.pokeTypesRes = response;
-        this.pokeTypesList = response.results;
+        this.pokeTypesList = CommonUtils.sortArrayByKey(response.results, 'name');
 
       },
       console.log

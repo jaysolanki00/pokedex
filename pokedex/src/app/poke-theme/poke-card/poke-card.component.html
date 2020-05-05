@@ -13,7 +13,7 @@
         <span class="{{topRightBadgeIcon}} prxs"></span>{{topRightBadgeText}}
     </div> -->
     <div class="poke-card-image" >
-    <poke-loadingspinner [isLoading]="pokemon?.pokedexNumber == null" ></poke-loadingspinner>
+    <poke-loadingspinner [isLoading]="!pokemon" *ngIf="!pokemon" ></poke-loadingspinner>
         <div *ngIf="pokemon">
             <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{{pokemon?.pokedexNumber}}.png"
             *ngIf="pokemon?.pokedexNumber != null && pokemon?.pokedexNumber?.length < 4; else defaultPokeImage" alt="Image For {{pokemon?.name}}" >
@@ -65,7 +65,7 @@
 
 <ng-template #defaultPokeImage>
   <div class="text-center">
-    <img class="card-img-right" src="/assets/404_{{pokemon.types[0].type.name}}.jpg/" alt="Default Pokemon Image">    
+    <img class="card-img-default" src="/assets/dream-world/great-ball.png" alt="Default Pokemon Image">    
   </div>
 </ng-template>
 
