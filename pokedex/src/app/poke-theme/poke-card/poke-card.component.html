@@ -3,7 +3,6 @@
 
 <ng-template #pokeTile>
   <div class="poke-card-wrapper" [ngClass]="{'poke-card-disabled' : isDisabled}">
-
     <div class="poke-card-top-left-badge" *ngIf="pokemon?.pokedexNumber">
       #{{pokemon?.pokedexNumber}}
     </div>
@@ -13,9 +12,11 @@
     <!-- <div class="poke-card-top-right-badge" *ngIf="topRightBadgeIcon || topRightBadgeText">
         <span class="{{topRightBadgeIcon}} prxs"></span>{{topRightBadgeText}}
     </div> -->
-    <div class="poke-card-image">
-        <div *ngIf="pokemon?.pokedexNumber != null && pokemon?.pokedexNumber?.length < 4; else defaultPokeImage">
-            <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{{pokemon?.pokedexNumber}}.png"  alt="Image For {{pokemon?.name}}">
+    <div class="poke-card-image" >
+    <poke-loadingspinner [isLoading]="pokemon?.pokedexNumber == null" ></poke-loadingspinner>
+        <div *ngIf="pokemon">
+            <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{{pokemon?.pokedexNumber}}.png"
+            *ngIf="pokemon?.pokedexNumber != null && pokemon?.pokedexNumber?.length < 4; else defaultPokeImage" alt="Image For {{pokemon?.name}}" >
                   <!-- working images starts here -->
         <!-- <img class="card-img-top" *ngIf="pokemon" [src]="pokemon.sprites.back_default" [alt]="miniPokemon.name+ ' back_default'">
         <img class="card-img-top" *ngIf="pokemon" [src]="pokemon.sprites.back_shiny" [alt]="miniPokemon.name+ ' back_shiny'">
@@ -67,7 +68,6 @@
     <img class="card-img-right" src="/assets/pokeballFavicon.png/" alt="">    
   </div>
 </ng-template>
-
 
 <ng-template #pokeTypes>
   <div class="mt-2">

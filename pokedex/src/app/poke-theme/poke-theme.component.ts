@@ -135,7 +135,6 @@ export class PokeThemeComponent implements OnInit {
   }
 
   pokeListSuccessForHugeData(response) {
-
     this.currentPokeResponse = response;
     this.pokeResponse = response;
     this.pokeList = response.results.filter((p, i) => i < this.displayCount );
