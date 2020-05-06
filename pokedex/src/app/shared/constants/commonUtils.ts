@@ -16,4 +16,21 @@ export class CommonUtils {
       return sortedArray;
     }
 
+      // ascending sort by default
+      public static removeDuplicatesByKey = (arrayToCheck: Array<any>, key: string) => {
+        const returningArray = [];
+        console.log('arrayToCheck',arrayToCheck);
+        arrayToCheck.forEach((element, index) => {
+          const isKeyFound = returningArray.filter((ele) => ele[key] === element[key] );
+          console.log('isKeyFound',isKeyFound);
+          if(!isKeyFound || (isKeyFound && isKeyFound.length == 0)) {
+            returningArray.push(element);
+          }
+        });
+        console.log('returningArray',returningArray);
+        return returningArray;
+      }
+
+    
+
 }

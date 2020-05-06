@@ -102,14 +102,19 @@ export class PokeThemeComponent implements OnInit {
   }
 
   pokeSearch() {
-    const results = this.pokeService.pokeMiniMasterList.results;
+    let results = this.pokeService.pokeMiniMasterList.results;
     if (results && results.length > 0 && this.pokeFindAcc) {
-      this.pokeList = results.filter( (poke, i) => poke.name.toLowerCase().includes(this.pokeFindAcc.toLowerCase())
-      || i == Number(this.pokeFindAcc) - 1 );
+      // results = CommonUtils.removeDuplicatesByKey(results, 'name');
+      results = results.filter( (poke, i) => poke.name.toLowerCase().includes(this.pokeFindAcc.toLowerCase())
+      || i === Number(this.pokeFindAcc) - 1 );
+
+      results = CommonUtils.removeDuplicatesByKey(results, 'name');
+      this.pokeList = results;
+
       if (this.pokeList.length <= 0) {
         this.errorMessage = 'No Results Found !';
       }
-    } else if (this.pokeFindAcc == '') {
+    } else if (this.pokeFindAcc === '') {
       this.pokeList = this.currentPokeList;
     }
   }
@@ -137,7 +142,7 @@ export class PokeThemeComponent implements OnInit {
           }
         },
         console.log,
-        () => {this.isLoading = false; }
+        () => this.isLoading = false
       );
     } else if (typeof this.selectedPokeType == 'string' && this.selectedPokeType == 'none') {
       this.pokeList = this.currentPokeList;
@@ -161,7 +166,8 @@ export class PokeThemeComponent implements OnInit {
       }
     } else if (this.selectedPokeSort == 'none') {
       this.selectedPokeSort = null;
-      this.pokeList = this.currentPokeList;
+      this.getPokemonByType();
+      // this.pokeList = this.currentPokeList;
     }
   }
 

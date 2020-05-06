@@ -1,5 +1,5 @@
 
-<ng-container *ngTemplateOutlet="pokeTile"></ng-container>
+<ng-container *ngTemplateOutlet="(miniPokemon && !pokemon) || ( pokemon && pokemon.pokedexNumber.length < 4) ? pokeTile : null"></ng-container>
 
 <ng-template #pokeTile>
   <div class="poke-card-wrapper" [ngClass]="{'poke-card-disabled' : isDisabled}">
@@ -65,7 +65,10 @@
 
 <ng-template #defaultPokeImage>
   <div class="text-center">
-    <img class="card-img-default" src="/assets/dream-world/great-ball.png" alt="Default Pokemon Image">    
+    <img class="card-img-default" src="/assets/poke-types/404_{{pokemon.types[0].type.name}}.png" alt="Default Pokemon Image">
+    <div >
+      <span *ngFor="let pokeType of pokemon.types" class="poke-type-{{pokeType.type.name}} ml-2">{{pokeType.type.name}} </span>
+    </div>  
   </div>
 </ng-template>
 

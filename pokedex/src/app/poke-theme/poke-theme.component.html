@@ -30,7 +30,7 @@
         <div class="float-sm-left d-inline" *ngIf="pokeTypesList" >
           <ng-container *ngTemplateOutlet="typeSelectorTemplate"></ng-container>
         </div>
-        <div class="d-sm-right d-inline float-right" *ngIf="unsortedMiniPokemon" >
+        <div class="d-sm-right d-inline float-right" *ngIf="unsortedMiniPokemon && selectedPokeType" >
           <ng-container *ngTemplateOutlet="sortTemplate"></ng-container>
         </div>
         <div class="d-sm-none d-inline float-right"  >
