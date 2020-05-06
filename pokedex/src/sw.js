@@ -5,6 +5,9 @@ const _CACHE = {
     fontCache: { cacheName: 'poke-fonts', regExp: /\.(?:woff|woff2|eot|ttf|svg)/ },
     defaultCache: { cacheName: 'poke-default' }
 }
+
+self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(_ => Promise.all(_.filter(_ => true).map(_ => caches.delete(_))))); });
+
   
   importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.0/workbox-sw.js');
   

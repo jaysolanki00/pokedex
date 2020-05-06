@@ -22,16 +22,15 @@
           <input type="search" class="poke-search-input poke-search-width" (input)="pokeList = pokeFindAcc == '' ? currentPokeList : pokeList" name="pokeFinder" id="pokeFinderInput" [(ngModel)]="pokeFindAcc" placeholder="Poke Search ">
           <button class="btn btn-warning btn-poke-warning" type="submit" [disabled]="!pokeFindAcc" (click)="userSelectedAction(userSelectedActions.search)" > Search </button>    
         </form>
-
       </div>
-      <div class="col-12 col-sm-4 col-md-5 ml-2 ml-sm-0">
-        <div class="d-inline" *ngIf="pokeTypesList" >
+      <div class="col-12 col-sm-4 col-md-5" *ngIf="pokeTypesList" >
+        <div class="d-inline ml-2" *ngIf="pokeTypesList" >
           <ng-container *ngTemplateOutlet="typeSelectorTemplate"></ng-container>
         </div>
-        <div class="d-inline d-sm-none float-right mr-2" >
+        <div class="d-inline d-sm-none ml-3 mr-1" >
           <ng-container *ngTemplateOutlet="themeBtn"></ng-container>
         </div> 
-        <div class="mt-1" *ngIf="unsortedMiniPokemon && selectedPokeType" >
+        <div class="mt-1 ml-2" *ngIf="unsortedMiniPokemon && selectedPokeType" >
           <ng-container *ngTemplateOutlet="sortTemplate"></ng-container>
         </div>
       </div> 
@@ -68,7 +67,7 @@
 
 <ng-template #sortTemplate>
   <label for="sortSelector" class="font-weight-bold" >Sort: </label>
-  <select class="poke-search-input mt-2 ml-1 mt-sm-0 text-capitalize" id="sortSelector" [(ngModel)]="selectedPokeSort" (change)="userSelectedAction(userSelectedActions.sort)" >
+  <select class="poke-search-input mt-2 mt-sm-0 text-capitalize" id="sortSelector" [(ngModel)]="selectedPokeSort" (change)="userSelectedAction(userSelectedActions.sort)" >
   <option value="none" >None</option>
   <option class="text-capitalize" value="ascending" #typeList >Name: Ascending</option>
   <option class="text-capitalize" value="descending" #typeList >Name: Descending</option>
