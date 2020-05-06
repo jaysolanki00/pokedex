@@ -12,6 +12,14 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { PokeService } from './poke-theme/poke.service';
 import { LoadingspinnerComponent } from './shared/templates/loadingspinner/loadingspinner.component';
+import { TypeComponent } from './poke-theme/type/type.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { CustomDialogComponent } from './shared/templates/custom-dialog/custom-dialog.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
 
 @NgModule({
   declarations: [
@@ -20,17 +28,26 @@ import { LoadingspinnerComponent } from './shared/templates/loadingspinner/loadi
     PokeCardComponent,
     InfiniteScrollComponent,
     LoadingspinnerComponent,
+    TypeComponent,
+    CustomDialogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    // ReactiveFormsModule,
     HttpClientModule,
     InfiniteScrollModule,
-    ServiceWorkerModule.register('sw.js', { enabled: environment.production })
+    ServiceWorkerModule.register('sw.js', { enabled: environment.production }),
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule,
+    MatSlideToggleModule
   ],
   providers: [PokeService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    CustomDialogComponent
+ ]
 })
 export class AppModule { }

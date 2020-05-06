@@ -9,6 +9,8 @@ export class AppConstants {
 
   public static themePreference = 'isPokeViewLight';
   public static viewPreference = 'isPokeViewGrid';
+  public static typeDetailsArray = 'pokeTypeDetailsArray';
+
 
   public static pokeOffsetLimit = 20;
 

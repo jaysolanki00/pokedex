@@ -44,4 +44,8 @@ export class PokeService {
     })) as Observable<Array<MiniPokeList>>;
   }
 
+  getTypeDetails(url: string) {
+    return this.http.get(url);
+  }
+
 }

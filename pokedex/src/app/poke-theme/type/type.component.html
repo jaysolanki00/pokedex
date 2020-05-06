@@ -1,0 +1,54 @@
+<ng-template #modalBodyTemplate>
+  <div class="poke-card-wrapper" [ngClass]="{'light-bg-card-wrapper' : isLight, 'dark-bg-card-wrapper': !isLight }">
+    <div class="poke-card-image" >
+        <img src="/assets/poke-types/404_{{selectedType}}.png"
+        alt="Image For {{selectedType}}" class="type-image" >
+        <div>
+          <span class="poke-type-{{selectedType}}" >{{selectedType}} </span>
+        </div>
+    </div>
+    <div class="poke-card-body text-center">
+      <div class="poke-card-body-desc" *ngIf="typeDetails; else loadingTemp">
+        <!-- <ng-container *ngTemplateOutlet="pokeAbilities"></ng-container> -->
+        <div *ngIf="typeDetails?.damage_relations?.double_damage_to?.length > 0" >
+          <ng-container [ngTemplateOutlet]="pokeTypeMaping" [ngTemplateOutletContext]="{label: 'Super effective against:', value: typeDetails.damage_relations.double_damage_to}"></ng-container>
+        </div>
+        <div *ngIf="typeDetails?.damage_relations?.no_damage_to?.length > 0" >
+          <ng-container [ngTemplateOutlet]="pokeTypeMaping" [ngTemplateOutletContext]="{label: 'Completely ineffective against:', value: typeDetails.damage_relations.no_damage_to}"></ng-container>
+        </div>
+        <!-- <div class="ml-2 mb-2">Double damage from:</div>          
+        <span *ngFor="let damage of typeDetails.damage_relations.double_damage_from" class="poke-type-{{damage.name}} ml-2" >{{damage.name}} </span>
+        <div class="ml-2 mb-2">Half damage To:</div>
+        <span *ngFor="let damage of typeDetails.damage_relations.half_damage_to" class="poke-type-{{damage.name}} ml-2" >{{damage.name}} </span>
+        <div class="ml-2 mb-2">Half damage from:</div>
+        <span *ngFor="let damage of typeDetails.damage_relations.half_damage_from" class="poke-type-{{damage.name}} ml-2" >{{damage.name}} </span>
+        <div class="ml-2 mb-2" >Completely ineffective against:</div>
+        <span *ngFor="let damage of typeDetails.damage_relations.no_damage_from" class="poke-type-{{damage.name}} ml-2" >{{damage.name}} </span> -->
+        <!-- <ng-container>
+          <div class="font-sm" ><span class="poke-card-label" >Weight: </span><span>pokemon.weight * 100/1000 kg</span></div>
+          <div class="font-sm" ><span class="poke-card-label" >Height: </span><span *ngIf="pokemon?.height">pokemon.height*100/1000 m</span></div>
+        </ng-container> -->
+      </div>
+    </div>
+</div>
+<ng-template #loadingTemp>
+  <div>Loading..
+  </div>
+</ng-template>
+</ng-template>
+<poke-loadingspinner [isLoading]="!false" *ngIf="!false" ></poke-loadingspinner>
+<poke-custom-dialog [modalBody]="modalBodyTemplate" ></poke-custom-dialog>
+
+<ng-template #pokeTypeMaping let-label='label' let-value='value'>
+  <div class="mb-2">{{label}}</div>
+  <div class="overflow-hidden" >
+    <span *ngFor="let damage of value; let i = index" >
+      <span *ngIf="i<3"  class="text-center poke-type-{{damage.name }}">{{ damage.name}} </span>
+    </span>
+  </div>
+  <div class="overflow-hidden" >
+    <span *ngFor="let damage of value; let i = index"  >
+      <span *ngIf="i>2"  class="text-center poke-type-{{damage.name }}">{{ damage.name}} </span>
+    </span>
+  </div>
+</ng-template>

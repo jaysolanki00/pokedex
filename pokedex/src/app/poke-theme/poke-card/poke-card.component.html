@@ -1,4 +1,3 @@
-
 <ng-container *ngTemplateOutlet="(miniPokemon && !pokemon) || ( pokemon && pokemon.pokedexNumber.length < 4) ? pokeTile : null"></ng-container>
 
 <ng-template #pokeTile>
@@ -76,7 +75,8 @@
   <div class="mt-2">
     <span class="font-sm poke-card-label">Type:</span>
     <span *ngFor="let pokeType of pokemon.types">
-      <span class="poke-type-{{pokeType.type.name}} ml-2">{{pokeType.type.name}} </span>
+      <span class="poke-type-{{pokeType.type.name}} ml-2 poke-clickable" [routerLink]="['type/'+pokeType.type.name]" >{{pokeType.type.name}} </span>
     </span>  
   </div>
 </ng-template>
+
