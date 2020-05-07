@@ -87,21 +87,14 @@
   <div class="mt-2 text-capitalize" *ngIf="pokemon.pokeEvolution">
     <span class="font-sm poke-card-label">Evolution: </span>
     <span> {{pokemon.pokeEvolution.chain.species.name}} </span>
-    <span class="fa fa-arrow-right"></span>
     <div *ngFor="let evolution of pokemon.pokeEvolution.chain.evolves_to" >
-      <span> {{evolution.species.name}} </span>
-      <span class="fa fa-arrow-right"></span>
+      <span class="fa fa-arrow-right"></span> <span> {{evolution.species.name}} </span>      
       <span *ngFor="let poke of evolution.evolves_to">
-          {{poke.species.name}}
+        <span class="fa fa-arrow-right"></span> {{poke.species.name}}
       </span>
     </div>
   </div>
-
-
-  <div >
-    
-      
-      
+  <div >   
   </div>
 </ng-template>
 
