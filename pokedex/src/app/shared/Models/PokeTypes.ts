@@ -72,6 +72,8 @@ export class Pokemon {
     weight: number;
     moves: Array<PokeMoves>;
     pokedexNumber: string;
+    pokeSpecies: any;
+    pokeEvolution: any;
 }
 
 // TODO add pokeTypes response model

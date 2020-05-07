@@ -3,6 +3,7 @@ import { PokeService } from './poke.service';
 import { PokeList, MiniPokeList, Pokemon } from '../shared/Models/PokeTypes';
 import { AppConstants } from '../shared/constants/app-constants';
 import { CommonUtils } from '../shared/constants/commonUtils';
+import { Router, NavigationStart } from '@angular/router';
 
 
 @Component({
@@ -27,6 +28,7 @@ export class PokeThemeComponent implements OnInit {
   public selectedPokeSort: string;
   public sortedMiniPokemon: Array<MiniPokeList>;
   public unsortedMiniPokemon: Array<MiniPokeList>;
+  public otherComponent: boolean;
   
   public userSelectedActions  = {
     type : 'type',
@@ -47,13 +49,25 @@ export class PokeThemeComponent implements OnInit {
     this.iscrollToTopBtn = scrollPosition >= 800;
   }
 
-  constructor(private pokeService: PokeService) { }
+  constructor(private pokeService: PokeService, private router: Router) {}
 
   ngOnInit() {
+    this.otherComponent = false;
+    // this.routeSubscriber();
     this.isLight = JSON.parse(localStorage.getItem(AppConstants.themePreference));
     this.isLoading = true;
     this.getPokeList();
     this.getPokeTypesList();
+  }
+
+  routeSubscriber() {
+    this.router.events.subscribe(
+      (event) => {
+        if (event instanceof NavigationStart) {
+          this.otherComponent = event.url === '/';
+        }
+      }
+    )
   }
 
   getPokeList() {

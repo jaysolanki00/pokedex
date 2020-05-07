@@ -1,6 +1,8 @@
 <div id="theme-applier" [ngClass]="{ 'light-bg' : isLight, 'dark-bg' : !isLight  }" >
   <ng-container *ngTemplateOutlet="header"></ng-container>
-  <ng-container *ngTemplateOutlet="userActions"></ng-container>
+  <ng-container *ngTemplateOutlet=" userActions"></ng-container>
+  <!-- routing components -->
+  <router-outlet></router-outlet>
   <poke-loadingspinner [isLoading]="isLoading" *ngIf="isLoading; else displayData"></poke-loadingspinner>
 </div>
 
@@ -8,7 +10,7 @@
   <div class="container-fluid font-xxl poke-font-hollow">
     <div class="row">
       <div class="col-md-8 col-sm-8">
-        <div class="d-inline">Welcome PokeFan</div>
+        <div class="d-inline brand-link" [routerLink]="'/'" >Welcome PokeFan</div>
       </div>
     </div>
   </div>
@@ -43,8 +45,11 @@
 
 
 <ng-template #displayData>
-  <button class="btn scroll-to-top-btn" *ngIf="iscrollToTopBtn" (click)="gotoTop()">👆</button>
-  <poke-infinite-scroll *ngIf="pokeList?.length > 0; else noPokemonAvailable" [isLight]="isLight" [pokeList]="pokeList" (scrolled)="getNextPokeList($event)" ></poke-infinite-scroll>
+  <ng-container *ngIf="!otherComponent" >
+    <button class="btn scroll-to-top-btn" *ngIf="iscrollToTopBtn" (click)="gotoTop()">👆</button>
+    <poke-infinite-scroll *ngIf="pokeList?.length > 0; else noPokemonAvailable" [isLight]="isLight" [pokeList]="pokeList" (scrolled)="getNextPokeList($event)" ></poke-infinite-scroll>  
+  </ng-container>
+  
 </ng-template>
 
 
@@ -73,5 +78,3 @@
   <option class="text-capitalize" value="descending" #typeList >Name: Descending</option>
   </select>
 </ng-template>
-  <!-- routing components -->
-  <router-outlet></router-outlet>

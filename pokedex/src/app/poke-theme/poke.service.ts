@@ -48,4 +48,12 @@ export class PokeService {
     return this.http.get(url);
   }
 
+  getPokemonSpeciesDetails(url: string) {
+    return this.http.get(url);
+  }
+
+  getPokemonEvolutionDetails(url: string) {
+    return this.http.get(url);
+  }
+
 }
