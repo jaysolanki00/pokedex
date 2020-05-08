@@ -74,10 +74,10 @@
 </ng-template>
 
 <ng-template #pokeTypes>
-  <div class="mt-2">
-    <span class="font-sm poke-card-label">Type:</span>
+  <div class="overflow-hidden">
+    <span class="font-sm poke-card-label mr-2">Type:</span>
     <span *ngFor="let pokeType of pokemon.types">
-      <span class="poke-type-{{pokeType.type.name}} ml-2 poke-clickable" [routerLink]="['type/'+pokeType.type.name]" >{{pokeType.type.name}} </span>
+      <span class="poke-type-{{pokeType.type.name}} poke-clickable" [routerLink]="['type/'+pokeType.type.name]" >{{pokeType.type.name}} </span>
     </span>  
   </div>
 </ng-template>
