@@ -169,9 +169,22 @@ export class PokeThemeComponent implements OnInit {
       this.isLoading = true;
       const currentPokeList = this.unsortedMiniPokemon;
       if (currentPokeList && currentPokeList.length > 0) {
-        this.sortedMiniPokemon = this.selectedPokeSort == 'ascending' ?
-        CommonUtils.sortArrayByKey(currentPokeList, 'name') :
-        CommonUtils.sortArrayByKey(currentPokeList, 'name', true);
+        switch (this.selectedPokeSort) {
+          case 'name-asc':
+            this.sortedMiniPokemon = CommonUtils.sortArrayByKey(currentPokeList, 'name');
+            break;
+          case 'name-desc':
+            this.sortedMiniPokemon = CommonUtils.sortArrayByKey(currentPokeList, 'name', true);
+            break;
+          case 'id-asc':
+            this.sortedMiniPokemon = currentPokeList;
+            break;
+          case 'id-desc':
+            this.sortedMiniPokemon = CommonUtils.reverseArray(currentPokeList);;
+            break;
+          default:
+            break;
+        }
         this.pokeList = [];
         this.getNextPokeSort();
         this.isLoading = false;

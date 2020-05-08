@@ -27,4 +27,9 @@ export class CommonUtils {
     return returningArray;
   }
 
+  // ascending sort by default
+  public static reverseArray = (arrayToCheck: Array<any>) => {
+    return arrayToCheck.slice().reverse();
+  }
+
 }

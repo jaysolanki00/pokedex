@@ -74,7 +74,9 @@
   <label for="sortSelector" class="font-weight-bold" >Sort: </label>
   <select class="poke-search-input mt-2 mt-sm-0 text-capitalize" id="sortSelector" [(ngModel)]="selectedPokeSort" (change)="userSelectedAction(userSelectedActions.sort)" >
   <option value="none" >None</option>
-  <option class="text-capitalize" value="ascending" #typeList >Name: Ascending</option>
-  <option class="text-capitalize" value="descending" #typeList >Name: Descending</option>
+  <option class="text-capitalize" value="id-asc" #typeList >ID: Ascending {{ !selectedPokeSort ? '[Default]': ''}}</option>
+  <option class="text-capitalize" value="id-desc" #typeList >ID: Descending</option>
+  <option class="text-capitalize" value="name-asc" #typeList >Name: Ascending</option>
+  <option class="text-capitalize" value="name-desc" #typeList >Name: Descending</option>
   </select>
 </ng-template>
