@@ -66,6 +66,16 @@ body {
   .mat-dialog-container {
     background: inherit
   }
+
+  ::-moz-selection { /* Code for Firefox */
+    color: @theme-pokeball-secondary;
+    background: @theme-pokeball-primary;
+  }
+  
+  ::selection {
+    color: @theme-pokeball-secondary;
+    background: @theme-pokeball-primary;
+  }
  
 }
 
@@ -112,6 +122,16 @@ body {
   .pokeball:after{
     background-color: @theme-pokeball-primary;
     border-bottom: none !important;
+  }
+
+  ::-moz-selection { /* Code for Firefox */
+    color: @theme-pokeball-secondary;
+    background: @theme-pokeball-primary;
+  }
+  
+  ::selection {
+    color: @theme-pokeball-secondary;
+    background: @theme-pokeball-primary;
   }
 
 }
