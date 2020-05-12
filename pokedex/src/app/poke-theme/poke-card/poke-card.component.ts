@@ -12,6 +12,7 @@ export class PokeCardComponent implements OnInit {
 
   public pokemon: Pokemon;
   public pokemonArray: Array<Pokemon> = [];
+  public isLoading: boolean;
 
   @Input() miniPokemon: MiniPokeList;
   @Output() pokemonDetails = new EventEmitter();
@@ -28,8 +29,10 @@ export class PokeCardComponent implements OnInit {
       this.pokemon = this.pokeService.pokeMasterData.find(poke => poke.name == this.miniPokemon.name );
     }
     if (!this.pokemon) {
+      this.isLoading = true;
       this.pokeService.getPokeDetails(this.miniPokemon.url).subscribe(
         response => {
+          this.isLoading = false;
           this.pokemon = response;
           this.getPokemonSpeciesDetails(response.species.url);
           if (response.id) {
@@ -38,7 +41,8 @@ export class PokeCardComponent implements OnInit {
             orderStr.length == 2 ? `0${orderStr}` : orderStr ;
           }
         },
-        console.log
+        console.log,
+        () => this.isLoading = false
       );
     }
   }
