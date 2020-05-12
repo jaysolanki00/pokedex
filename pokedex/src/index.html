@@ -15,7 +15,10 @@
     function loadAsyncStyleSheets() {
     var asyncStyleSheets = [
       // enter URL of stylesheet here
-      'styles.css'
+      'styles.css',
+      'https://fonts.googleapis.com/css?family=Roboto:300,400,500',
+      'https://fonts.googleapis.com/icon?family=Material+Icons',
+      'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'
     ];
       for (var i = 0; i < asyncStyleSheets.length; i++) {
           var link = document.createElement('link');
@@ -24,12 +27,9 @@
           document.head.appendChild(link);
       }
     }
-    loadAsyncStyleSheets()
+    loadAsyncStyleSheets();
 
   </script>
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
   <poke-root></poke-root>
