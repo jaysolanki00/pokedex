@@ -12,7 +12,7 @@
         <span class="{{topRightBadgeIcon}} prxs"></span>{{topRightBadgeText}}
     </div> -->
     <div class="poke-card-image" >
-    <poke-loadingspinner [isLoading]="isLoading" *ngIf="isLoading" ></poke-loadingspinner>
+    <poke-loadingspinner [isLoading]="isLoading" *ngIf="isLoading" [ngClass]="{'d-none': !isLoading}" ></poke-loadingspinner>
         <div *ngIf="pokemon">
             <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{{pokemon?.pokedexNumber}}.png"
             *ngIf="pokemon?.pokedexNumber != null && pokemon?.pokedexNumber?.length < 4; else defaultPokeImage" alt="Image For {{pokemon?.name}}"
