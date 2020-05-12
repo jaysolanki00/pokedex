@@ -14,8 +14,9 @@
     <div class="poke-card-image" >
     <poke-loadingspinner [isLoading]="!pokemon" *ngIf="!pokemon" ></poke-loadingspinner>
         <div *ngIf="pokemon">
-            <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{{pokemon?.pokedexNumber}}.png"
-            *ngIf="pokemon?.pokedexNumber != null && pokemon?.pokedexNumber?.length < 4; else defaultPokeImage" alt="Image For {{pokemon?.name}}" >
+            <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{{pokemon?.pokedexNumber}}.notfound"
+            *ngIf="pokemon?.pokedexNumber != null && pokemon?.pokedexNumber?.length < 4; else defaultPokeImage" alt="Image For {{pokemon?.name}}"
+                (error)="errorImage(imageElem, pokemon.sprites.front_default)" #imageElem>
                   <!-- working images starts here -->
         <!-- <img class="card-img-top" *ngIf="pokemon" [src]="pokemon.sprites.back_default" [alt]="miniPokemon.name+ ' back_default'">
         <img class="card-img-top" *ngIf="pokemon" [src]="pokemon.sprites.back_shiny" [alt]="miniPokemon.name+ ' back_shiny'">

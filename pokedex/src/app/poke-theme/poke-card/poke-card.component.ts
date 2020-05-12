@@ -64,5 +64,10 @@ export class PokeCardComponent implements OnInit {
     );
   }
 
+  errorImage(elem, url) {
+    elem.src = url;
+    elem.style.height = elem.style.width = '96px';
+    elem.style.marginTop = '60px';
+  }
 
 }
