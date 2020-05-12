@@ -1,16 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
+  selector: 'poke-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.less']
 })
-export class AppComponent {
-  title = 'pokedex';
-  response = [
-    {name:'Bulbasaur', type: 'Grass'},
-    {name:'Ivyasaur', type: 'Grass'},
-    {name:'Venasaur', type: 'Grass'},
-
-  ]
-}
+export class AppComponent { }
