@@ -84,7 +84,7 @@
 
 <ng-template #evolutionBody>
 
-  <div class="mt-2 text-capitalize" *ngIf="pokemon.pokeEvolution">
+  <div class="mt-2 text-capitalize mr-3" *ngIf="pokemon.pokeEvolution">
     <span class="font-sm poke-card-label">Evolution: </span>
     <span> {{pokemon.pokeEvolution.chain.species.name}} </span>
     <ng-container *ngTemplateOutlet="pokemon.pokeEvolution.chain.species.name !== 'eevee' ? simpleEvolution : complexEvolution"></ng-container>
@@ -93,12 +93,12 @@
   </div>
   
   <ng-template #simpleEvolution>
-    <div *ngFor="let evolution of pokemon.pokeEvolution.chain.evolves_to" >
+    <span *ngFor="let evolution of pokemon.pokeEvolution.chain.evolves_to" >
       <span class="fa fa-arrow-right"></span> <span> {{evolution.species.name}} </span>      
       <span *ngFor="let poke of evolution.evolves_to">
         <span class="fa fa-arrow-right"></span> {{poke.species.name}}
       </span>      
-    </div>
+    </span>
   </ng-template>
 
   <ng-template #complexEvolution>
