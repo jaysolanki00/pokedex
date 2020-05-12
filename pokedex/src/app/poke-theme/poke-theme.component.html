@@ -20,9 +20,9 @@
   <div class="container-fluid user-actions">
     <div class="row">
       <div class="col-12 col-sm-5 col-md-4">
-        <form class="d-inline" >
+        <form class="d-inline ml-2" >
           <input type="search" class="poke-search-input poke-search-width" (input)="pokeList = pokeFindAcc == '' ? currentPokeList : pokeList" name="pokeFinder" id="pokeFinderInput" [(ngModel)]="pokeFindAcc" placeholder="Poke Search ">
-          <button class="btn btn-warning btn-poke-warning" type="submit" [disabled]="!pokeFindAcc" (click)="userSelectedAction(userSelectedActions.search)" > Search </button>    
+          <button class="btn btn-warning btn-poke-warning ml-2" type="submit" [disabled]="!pokeFindAcc" (click)="userSelectedAction(userSelectedActions.search)" > Search </button>    
         </form>
       </div>
       <div class="col-12 col-sm-4 col-md-5" *ngIf="pokeTypesList" >
@@ -59,7 +59,7 @@
 
 <ng-template #typeSelectorTemplate>
   <label for="typeSelector" class="font-weight-bold" >Type: </label>
-    <select class="poke-search-input mt-2 text-capitalize" id="typeSelector" [(ngModel)]="selectedPokeType" (change)="userSelectedAction(userSelectedActions.type)" >
+    <select class="poke-search-input mt-2 ml-2 text-capitalize" id="typeSelector" [(ngModel)]="selectedPokeType" (change)="userSelectedAction(userSelectedActions.type)" >
     <option value="none" >None</option>
     <option class="text-capitalize" *ngFor="let pokeType of pokeTypesList" [ngValue]="pokeType" #typeList >{{pokeType.name}}</option>
   </select>
@@ -72,7 +72,7 @@
 
 <ng-template #sortTemplate>
   <label for="sortSelector" class="font-weight-bold" >Sort: </label>
-  <select class="poke-search-input mt-2 mt-sm-0 text-capitalize" id="sortSelector" [(ngModel)]="selectedPokeSort" (change)="userSelectedAction(userSelectedActions.sort)" >
+  <select class="poke-search-input mt-2 ml-2 mt-sm-0 text-capitalize" id="sortSelector" [(ngModel)]="selectedPokeSort" (change)="userSelectedAction(userSelectedActions.sort)" >
   <option value="none" >None</option>
   <!-- <option class="text-capitalize" value="id-asc" #typeList >ID: Ascending {{ !selectedPokeSort ? '[Default]': ''}}</option>
   <option class="text-capitalize" value="id-desc" #typeList >ID: Descending</option> -->
