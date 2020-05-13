@@ -31,7 +31,7 @@ self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(_ => Pro
           maxEntries: 30,
         })
       ],
-    })100
+    })
   );
   
   workbox.routing.registerRoute(
