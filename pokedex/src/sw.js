@@ -25,13 +25,13 @@ self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(_ => Pro
       cacheName: _CACHE.dynamicApp.cacheName,
       plugins: [
         new workbox.expiration.Plugin({
-          // Cache files for 7 day
-          maxAgeSeconds: 7 * 24 * 60 * 60,
+          // Cache files for 60 day
+          maxAgeSeconds: 60 * 24 * 60 * 60,
           // Only cache 30 files.
           maxEntries: 30,
         })
       ],
-    })
+    })100
   );
   
   workbox.routing.registerRoute(
@@ -41,10 +41,10 @@ self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(_ => Pro
       cacheName: _CACHE.getAPI.cacheName,
       plugins: [
         new workbox.expiration.Plugin({
-          // Cache files for 7 days
-          maxAgeSeconds: 7 * 24 * 60 * 60,
+          // Cache files for 30 days
+          maxAgeSeconds: 30 * 24 * 60 * 60,
           // Only cache 30 responses.
-          maxEntries: 30,
+          maxEntries: 1000,
         })
       ],
     })
@@ -56,10 +56,10 @@ self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(_ => Pro
       cacheName: _CACHE.imageCache.cacheName,
       plugins: [
         new workbox.expiration.Plugin({
-          // Cache images for 3 days
-          maxAgeSeconds: 7 * 24 * 60 * 60,
+          // Cache images for 30 days
+          maxAgeSeconds: 30 * 24 * 60 * 60,
           // Only cache 60 images.
-          maxEntries: 60
+          maxEntries: 1500
         }),
       ],
     })
@@ -71,8 +71,8 @@ self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(_ => Pro
       cacheName: _CACHE.fontCache.cacheName,
       plugins: [
         new workbox.expiration.Plugin({
-          // Cache images for 3 days
-          maxAgeSeconds: 7 * 24 * 60 * 60,
+          // Cache images for 30 days
+          maxAgeSeconds: 30 * 24 * 60 * 60,
           // Only cache 60 Fonts.
           maxEntries: 60
         }),
