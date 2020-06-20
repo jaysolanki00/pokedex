@@ -1,6 +1,8 @@
 <div id="theme-applier" [ngClass]="{ 'light-bg' : isLight, 'dark-bg' : !isLight  }" >
-  <ng-container *ngTemplateOutlet="header"></ng-container>
-  <ng-container *ngTemplateOutlet=" userActions"></ng-container>
+  <div id="stickyHeader">
+    <ng-container *ngTemplateOutlet="header"></ng-container>
+    <ng-container *ngTemplateOutlet=" userActions"></ng-container>  
+  </div>
   <!-- routing components -->
   <router-outlet></router-outlet>
   <poke-loadingspinner [isLoading]="isLoading" *ngIf="isLoading; else displayData"></poke-loadingspinner>
@@ -46,7 +48,6 @@
 
 <ng-template #displayData>
   <ng-container *ngIf="!otherComponent" >
-    <button class="btn scroll-to-top-btn" *ngIf="iscrollToTopBtn" (click)="gotoTop()">👆</button>
     <poke-infinite-scroll *ngIf="pokeList?.length > 0; else noPokemonAvailable" [isLight]="isLight" [pokeList]="pokeList" (scrolled)="getNextPokeList($event)" ></poke-infinite-scroll>  
   </ng-container>
   

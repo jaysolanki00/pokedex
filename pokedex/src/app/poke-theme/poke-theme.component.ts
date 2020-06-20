@@ -76,7 +76,7 @@ export class PokeThemeComponent implements OnInit {
        e => {
         this.serviceCallToGetNextList(AppConstants.APIURLS.pokeFailSafeUrl);
       },
-      () => this.isLoading = false
+      () => {this.isLoading = false; this.mountStickyHeader()}
     );
   }
 
@@ -156,7 +156,7 @@ export class PokeThemeComponent implements OnInit {
           }
         },
         console.log,
-        () => this.isLoading = false
+        () => {this.isLoading = false; this.mountStickyHeader()}
       );
     } else if (typeof this.selectedPokeType == 'string' && this.selectedPokeType == 'none') {
       this.pokeList = this.currentPokeList;
@@ -221,6 +221,7 @@ export class PokeThemeComponent implements OnInit {
   }
 
   userSelectedAction(action) {
+    this.mountStickyHeader();
     switch (action) {
       case this.userSelectedActions.search:
         // call search fn
@@ -245,6 +246,18 @@ export class PokeThemeComponent implements OnInit {
       default:
       break;
     }
+  }
+
+  mountStickyHeader() {
+        // todo: calculations
+      try{
+        setTimeout(() => {
+          const scrollComp = document.getElementsByClassName('scroll-ovf')[0];
+          const header = document.getElementById('stickyHeader');
+          const body = document.getElementsByTagName('body')[0];
+          (scrollComp as any).style.height = body.clientHeight - header.clientHeight + 'px';
+        });
+      } catch (e) {}
   }
 
 }

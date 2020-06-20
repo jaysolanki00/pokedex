@@ -1,7 +1,8 @@
-<div class="container-fluid"
+<div class="container-fluid scroll-ovf"
 infiniteScroll
 [infiniteScrollDistance]="2"
 [infiniteScrollThrottle]="50"
+[scrollWindow]="false"
 (scrolled)="onScroll()">
   <div class="row justify-content-center">
     <div *ngFor="let pokemon of pokeList">
