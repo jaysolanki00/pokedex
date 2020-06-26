@@ -48,6 +48,10 @@ export class PokeThemeComponent implements OnInit {
     const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
     this.iscrollToTopBtn = scrollPosition >= 800;
   }
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.mountStickyHeader();
+  }
 
   constructor(private pokeService: PokeService, private router: Router) {}
 
