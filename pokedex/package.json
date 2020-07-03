@@ -10,7 +10,7 @@
     "e2e": "ng e2e",
     "prod_sw_build": "npm run build && node workbox-inject.js",
     "build_prod": "npm run build && browserify -s main dist/pokedex/runtime**js dist/pokedex/es2015**js dist/pokedex/polyfills**js dist/pokedex/main**js > dist/pokedex/bundle.js && npm run minify && node workbox-inject.js",
-    "minify": "uglifyjs dist/pokedex/bundle.js --screw-ie8 --compress --mangle --output dist/pokedex/bundle.min.js"
+    "minify": "uglifyjs dist/pokedex/bundle.js --compress --mangle --output dist/pokedex/bundle.min.js"
   },
   "private": true,
   "dependencies": {
