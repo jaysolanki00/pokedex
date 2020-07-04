@@ -61,7 +61,7 @@
 
 <ng-template #pokeAbilities>
   <div class="font-sm"><span class="poke-card-label" >Abilities: </span> 
-  <span class="text-capitalize" *ngFor="let pokeAbility of pokemon.knownAbilities; let i = index"> <span *ngIf="!pokeAbility.is_hidden"> {{pokeAbility.ability.name}}{{ i === pokemon.knownAbilities.length-1 ? '.' : ',' }}</span></span>
+  <span class="text-capitalize" *ngFor="let pokeAbility of pokemon.knownAbilities; let i = index"> {{pokeAbility.ability.name}}{{ i === pokemon.knownAbilities.length-1 ? '.' : ',' }}</span>
   </div>
 </ng-template>
 
