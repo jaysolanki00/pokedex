@@ -46,6 +46,7 @@ export class PokeMoves {
 
 export class Pokemon {
     abilities: Array<Ability>;
+    knownAbilities: Array<Ability>;
     base_experience: number;
     forms: Array<MiniPokeList>;
     game_indices: Array<GameIndex>;

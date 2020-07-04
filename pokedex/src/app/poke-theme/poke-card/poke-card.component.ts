@@ -34,6 +34,7 @@ export class PokeCardComponent implements OnInit {
         response => {
           this.isLoading = false;
           this.pokemon = response;
+          this.pokemon.knownAbilities = this.pokemon.abilities.filter( ability => !ability.is_hidden )
           this.getPokemonSpeciesDetails(response.species.url);
           if (response.id) {
             const orderStr = String(response.id);
