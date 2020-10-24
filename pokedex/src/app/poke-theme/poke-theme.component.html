@@ -9,12 +9,8 @@
 </div>
 
 <ng-template #header>
-  <div class="container-fluid font-xxl poke-font-hollow">
-    <div class="row">
-      <div class="col-md-8 col-sm-8">
-        <div class="d-inline brand-link" [routerLink]="'/'" >Welcome PokeFan</div>
-      </div>
-    </div>
+  <div class="font-xxl poke-font-hollow text-center pb-4" >
+    <span class="brand-link" [routerLink]="'/'" >Welcome PokeFan</span>
   </div>
 </ng-template>
 
@@ -45,14 +41,12 @@
   </div>
 </ng-template>
 
-
 <ng-template #displayData>
   <ng-container *ngIf="!otherComponent" >
     <poke-infinite-scroll *ngIf="pokeList?.length > 0; else noPokemonAvailable" [isLight]="isLight" [pokeList]="pokeList" (scrolled)="getNextPokeList($event)" ></poke-infinite-scroll>  
   </ng-container>
   
 </ng-template>
-
 
 <ng-template #noPokemonAvailable>
 <div class="front-error-message">{{errorMessage}}</div>
@@ -68,16 +62,14 @@
 
 
 <ng-template #themeBtn>
-  <mat-slide-toggle (toggleChange)="toggleTheme()" [checked]="!isLight" [labelPosition]="'before'" >Dark Theme: </mat-slide-toggle>
+  <mat-slide-toggle (change)="toggleTheme()" [checked]="!isLight" [labelPosition]="'before'" >Dark Theme: </mat-slide-toggle>
 </ng-template>
 
 <ng-template #sortTemplate>
   <label for="sortSelector" class="font-weight-bold" >Sort: </label>
   <select class="poke-search-input mt-2 ml-2 mt-sm-0 text-capitalize" id="sortSelector" [(ngModel)]="selectedPokeSort" (change)="userSelectedAction(userSelectedActions.sort)" >
-  <option value="none" >None</option>
-  <!-- <option class="text-capitalize" value="id-asc" #typeList >ID: Ascending {{ !selectedPokeSort ? '[Default]': ''}}</option>
-  <option class="text-capitalize" value="id-desc" #typeList >ID: Descending</option> -->
-  <option class="text-capitalize" value="name-asc" #typeList >Name: Ascending</option>
-  <option class="text-capitalize" value="name-desc" #typeList >Name: Descending</option>
+    <option value="none" >None</option>
+    <option class="text-capitalize" value="name-asc" #typeList >Name: Ascending</option>
+    <option class="text-capitalize" value="name-desc" #typeList >Name: Descending</option>
   </select>
 </ng-template>

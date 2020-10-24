@@ -1,13 +1,12 @@
-@import './_colors.less';
-@import './_typography.less';
+@import "./_colors.less";
+@import "./_typography.less";
 
-
-.poke-type-tile(){
+.poke-type-tile() {
   .poke-type-tile-font();
   text-transform: capitalize;
-  padding: 10px;
+  padding: 8px 12px;
   border-radius: 5px;
-  color:  @color-poke-type;
+  color: @color-poke-type;
 }
 
 .poke-type-poison {
@@ -100,53 +99,33 @@
   background-color: @color-poke-type-ice;
 }
 
-// poke cards starts here
-// @import(reference, less) "../../assets/fonts/iconfonts/style.css";
-
 .poke-card-outer-container {
   width: 100%;
   padding: 11px;
 }
 
-// .poke-modal-tile-masonry {
-//   display: inline-block;
-//   &:focus {
-//       outline: none;
-//   }
-// }
-
 // poke ball common styles starts here
 
-// *
-// {
-//     -webkit-box-sizing: border-box;
-//        -moz-box-sizing: border-box;
-//             box-sizing: border-box;
-// }
-
-.pokeball-wrapper
-{
+.pokeball-wrapper {
   display: inline-block;
   position: relative;
   top: 90px;
-  position: relative; 
+  position: relative;
   left: 50%;
   transform: translateX(-50%);
-  
 }
 
 .pokeball {
-
   width: 60px;
   height: 60px;
-  border-radius: 50% ;
+  border-radius: 50%;
   position: relative;
   overflow: hidden;
-  animation: frames 0.85s  linear 0s infinite;
+  animation: frames 0.85s linear 0s infinite;
 }
 
-.pokeball:after{
-  content: '';
+.pokeball:after {
+  content: "";
   position: absolute;
   width: 60px;
   height: 30px;
@@ -155,8 +134,8 @@
   border-bottom: 4px solid;
 }
 
-.pokeball:before{
-  content: '';
+.pokeball:before {
+  content: "";
   position: absolute;
   width: 18px;
   height: 18px;
@@ -168,11 +147,11 @@
 }
 
 /* AnimationFrames */
-@keyframes frames{
+@keyframes frames {
   0% {
     transform: rotate(0deg);
   }
-  100%{
+  100% {
     transform: rotate(360deg);
   }
 }
@@ -180,7 +159,7 @@
 // poke ball common styles ends here
 
 .poke-card-wrapper {
-  width: 240px;
+  width: 200px;
   margin: 15px;
   position: relative;
   border-radius: 8px;
@@ -192,8 +171,10 @@
   border: 1px solid transparent;
   transform: matrix(1, 0, 0, 1, 0, 0);
   // cursor: pointer;
-  &:hover, &:active, &:focus {
-      outline: none;
+  &:hover,
+  &:active,
+  &:focus {
+    outline: none;
   }
   .pokeball-wrapper {
     top: 90px;
@@ -203,12 +184,12 @@
 }
 
 .poke-card-top-left-badge {
-  width: 60px;
-  height: 30px;
+  width: 44px;
+  height: 22px;
   border-radius: 20px;
   text-align: center;
-  line-height: 30px;
   position: absolute;
+  font-size: @font-poke-s;
 }
 
 .poke-card-top-right-badge {
@@ -224,18 +205,18 @@
 
 .poke-card-image {
   width: 100%;
-  height: 220px;
+  height: 180px;
   // background: white;
   text-align: center;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   img {
-      height: 215px;
-      width: 215px;
-      object-fit: cover;
-      overflow: hidden;
-      border-top-left-radius: 8px;
-      border-top-right-radius: 8px;
+    height: 180px;
+    width: 180px;
+    object-fit: cover;
+    overflow: hidden;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
   }
   .card-img-default {
     margin-top: 44px;
@@ -245,7 +226,7 @@
   }
 
   .placeholder-icon {
-      line-height: 184px;
+    line-height: 184px;
   }
 }
 
@@ -260,34 +241,21 @@
 }
 .poke-card-body {
   width: 100%;
-  height: 260px;
+  height: 200px;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   padding: 2px;
 }
 
-// .poke-card-body-icon-wrapper {
-//   display: inline-block;
-//   width: 48px;
-//   vertical-align: top;
-//   padding: 8px;
-//   position: relative;
-
-//   .placeholder-icon {
-//       // .icon-size-3;
-//       position: relative;
-//   }
-// }
-
 .poke-card-body-text-wrapper {
   display: inline-block;
   width: ~"calc(100% - 48px)";
   &:after {
-      position: absolute;
-      content: "";
-      width: 192px;
-      margin-top: -46px;
-      display: inline-block;
+    position: absolute;
+    content: "";
+    width: 192px;
+    margin-top: -46px;
+    display: inline-block;
   }
 }
 
@@ -306,9 +274,6 @@
   white-space: pre-wrap;
   text-overflow: ellipsis;
   margin-left: 8px;
-  div {
-    margin-top: 4px
-  }
 }
 
 .poke-card-body-icon {
@@ -318,22 +283,16 @@
   border-radius: 50%;
 }
 
-// .poke-card-disabled {
-//   .placeholder-icon, .poke-card-body-title, .poke-card-body-desc {
-//       // color: white;
-//   }
-// }
-
 .poke-card-move-image {
   img {
-      position: absolute;
-      top: 56px;
-      left: 56px;
-      height: 128px;
-      width: 128px;
-      border-radius: 50%;
+    position: absolute;
+    top: 56px;
+    left: 56px;
+    height: 128px;
+    width: 128px;
+    border-radius: 50%;
 
-      // .transition(all 0.5s ease-in-out);
+    // .transition(all 0.5s ease-in-out);
   }
 }
 
@@ -348,116 +307,3 @@
   margin-left: 4px;
   position: absolute;
 }
-
-.no-results-found {
-  // .poke-text-style-a;
-}
-
-// @media only screen and (max-width:599px) {
-//     .poke-card-wrapper {
-//         // width: calc(100vw - 86px);
-//     }
-
-//     .poke-card-image {
-//         // height: calc(100vw - 86px - 86px);
-
-//         img {
-//             // height: calc(100vw - 86px - 86px);
-//         }
-
-//         .placeholder-icon {
-//             line-height: calc(100vw - 86px - 86px);
-//         }
-//     }
-// }
-
-// @media only screen and (min-width:600px) and (max-width:959px) {
-//     .poke-card-wrapper {
-//         // width: calc(100vw - 128px - 86px);
-//     }
-
-//     .poke-card-image {
-//         height: calc(50vw - 128px - 86px);
-
-//         img {
-//             height: calc(50vw - 128px - 86px);
-//         }
-
-//         .placeholder-icon {
-//             line-height: calc(50vw - 128px - 86px);
-//         }
-//     }
-// }
-
-// @media only screen and (min-width:960px) and (max-width:1023px) {
-//     .poke-card-wrapper {
-//         width: calc(((100vw - 192px)/2) );
-//     }
-
-//     .poke-card-image {
-//         height: calc(((100vw - 192px)/2)  );
-
-//         img {
-//             height: calc(((100vw - 192px)/2)  );
-//         }
-
-//         .placeholder-icon {
-//             line-height: calc(((100vw - 192px)/2)  );
-//         }
-//     }
-// }
-
-// @media only screen and (min-width:1024px) and (max-width:1279px) {
-//     .poke-card-wrapper {
-//         width: calc(((100vw - 192px)/5) );
-//     }
-
-//     .poke-card-image {
-//         height: calc(((100vw - 192px)/5)  );
-
-//         img {
-//             height: calc(((100vw - 192px)/5)  );
-//         }
-
-//         .placeholder-icon {
-//             line-height: calc(((100vw - 192px)/5)  );
-//         }
-//     }
-// }
-
-// @media only screen and (min-width:1280px) and (max-width:1551px) {
-//     .poke-card-wrapper {
-//         width: calc(((100vw - 192px)/5));
-//     }
-
-//     .poke-card-image {
-//         height: calc(((100vw - 192px)/5));
-
-//         img {
-//             height: calc(((100vw - 192px)/5));
-//         }
-
-//         .placeholder-icon {
-//             line-height: calc(((100vw - 192px)/5));
-//         }
-//     }
-// }
-
-// @media only screen and (min-width:1552px) {
-//     .poke-card-wrapper {
-//         width: calc(((100vw - 192px)/5) );
-//     }
-
-//     .poke-card-image {
-//         height: calc(((100vw - 192px)/5)  );
-
-//         img {
-//             height: calc(((100vw - 192px)/5)  );
-//         }
-
-//         .placeholder-icon {
-//             line-height: calc(((100vw - 192px)/5)  );
-//         }
-//     }
-// }
-

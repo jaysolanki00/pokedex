@@ -108,12 +108,12 @@ export class PokeThemeComponent implements OnInit {
   serviceCallToGetNextList(nextURL) {
     this.pokeService.getNextPokeList(nextURL).subscribe(
       response => {
-        this.pokeList = this.currentPokeList;
+        this.pokeList = this.pokeList.concat(response.results);
         this.currentPokeResponse = response;
         this.pokeResponse.next = response.next;
         this.pokeResponse.previous = response.previous;
         this.pokeResponse.results = this.pokeResponse.results.concat(response.results);
-        this.currentPokeList = this.currentPokeList.concat(response.results);
+        this.currentPokeList = this.pokeList;
       },
       console.log
     );
@@ -253,15 +253,14 @@ export class PokeThemeComponent implements OnInit {
   }
 
   mountStickyHeader() {
-        // todo: calculations
-      try{
-        setTimeout(() => {
-          const scrollComp = document.getElementsByClassName('scroll-ovf')[0];
-          const header = document.getElementById('stickyHeader');
-          const body = document.getElementsByTagName('body')[0];
-          (scrollComp as any).style.height = body.clientHeight - header.clientHeight + 'px';
-        });
-      } catch (e) {}
+    try {
+      setTimeout(() => {
+        const scrollComp = document.getElementsByClassName('scroll-ovf')[0];
+        const header = document.getElementById('stickyHeader');
+        const body = document.getElementsByTagName('body')[0];
+        (scrollComp as any).style.height = body.clientHeight - header.clientHeight + 'px';
+      });
+    } catch (e) {}
   }
 
 }

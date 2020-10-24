@@ -5,9 +5,9 @@ infiniteScroll
 [scrollWindow]="false"
 (scrolled)="onScroll()">
   <div class="row justify-content-center">
-    <div *ngFor="let pokemon of pokeList">
+    <ng-container *ngFor="let pokemon of pokeList">
       <poke-card [miniPokemon]="pokemon" *ngIf="pokemon && pokemon.url"
         (pokemonDetails)="setPokeDetailsInArray($event)"></poke-card>
-    </div>
+    </ng-container>
   </div>
 </div>
