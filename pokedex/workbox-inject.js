@@ -3,9 +3,9 @@ const {injectManifest} = require('workbox-build');
 var wbConfig = {
 "globDirectory": "dist/pokedex/",
   "globPatterns": [
-    "**.{js,css,html}",
+    "bundle.min.js",
     "assets/fonts/**/*.{eot,svg,ttf,woff,woff2}",
-    "**"
+    "**.css"
   ],
   "swSrc": "src/sw.js",
   "swDest": "dist/pokedex/sw.js",

@@ -14,7 +14,9 @@ self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(_ => Pro
   workbox.core.skipWaiting();
   workbox.core.clientsClaim();
   
-  workbox.precaching.precacheAndRoute(self.__WB_MANIFEST); //injectManifest
+  try {
+    workbox.precaching.precacheAndRoute(self.__WB_MANIFEST); //injectManifest
+  } catch (error) { }
   
   workbox.routing.setDefaultHandler(new workbox.strategies.CacheFirst());
   
