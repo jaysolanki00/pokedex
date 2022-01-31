@@ -1,0 +1,75 @@
+<div id="theme-applier" [ngClass]="{ 'light-bg' : isLight, 'dark-bg' : !isLight  }" >
+  <div id="stickyHeader">
+    <ng-container *ngTemplateOutlet="header"></ng-container>
+    <ng-container *ngTemplateOutlet=" userActions"></ng-container>  
+  </div>
+  <!-- routing components -->
+  <router-outlet></router-outlet>
+  <poke-loadingspinner [isLoading]="isLoading" *ngIf="isLoading; else displayData"></poke-loadingspinner>
+</div>
+
+<ng-template #header>
+  <div class="font-xxl poke-font-hollow text-center pb-4" >
+    <span class="brand-link" [routerLink]="'/'" >Welcome PokeFan</span>
+  </div>
+</ng-template>
+
+<ng-template #userActions>
+  <div class="container-fluid user-actions">
+    <div class="row">
+      <div class="col-12 col-sm-5 col-md-4">
+        <form class="d-inline ml-2" >
+          <input type="search" class="poke-search-input poke-search-width" (input)="pokeList = pokeFindAcc == '' ? currentPokeList : pokeList" name="pokeFinder" id="pokeFinderInput" [(ngModel)]="pokeFindAcc" placeholder="Poke Search ">
+          <button class="btn btn-warning btn-poke-warning ml-2" type="submit" [disabled]="!pokeFindAcc" (click)="userSelectedAction(userSelectedActions.search)" > Search </button>    
+        </form>
+      </div>
+      <div class="col-12 col-sm-4 col-md-5" *ngIf="pokeTypesList" >
+        <div class="d-inline ml-2" *ngIf="pokeTypesList" >
+          <ng-container *ngTemplateOutlet="typeSelectorTemplate"></ng-container>
+        </div>
+        <div class="d-inline d-sm-none ml-3 mr-1" >
+          <ng-container *ngTemplateOutlet="themeBtn"></ng-container>
+        </div> 
+        <div class="mt-1 ml-2" *ngIf="unsortedMiniPokemon && selectedPokeType" >
+          <ng-container *ngTemplateOutlet="sortTemplate"></ng-container>
+        </div>
+      </div> 
+      <div class="col-sm-3 col-md-3 text-center d-sm-block d-none" >
+        <ng-container *ngTemplateOutlet="themeBtn"></ng-container>
+      </div> 
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #displayData>
+  <ng-container *ngIf="!otherComponent" >
+    <poke-infinite-scroll *ngIf="pokeList?.length > 0; else noPokemonAvailable" [isLight]="isLight" [pokeList]="pokeList" (scrolled)="getNextPokeList($event)" ></poke-infinite-scroll>  
+  </ng-container>
+  
+</ng-template>
+
+<ng-template #noPokemonAvailable>
+<div class="front-error-message">{{errorMessage}}</div>
+</ng-template>
+
+<ng-template #typeSelectorTemplate>
+  <label for="typeSelector" class="font-weight-bold" >Type: </label>
+    <select class="poke-search-input mt-2 ml-2 text-capitalize" id="typeSelector" [(ngModel)]="selectedPokeType" (change)="userSelectedAction(userSelectedActions.type)" >
+    <option value="none" >None</option>
+    <option class="text-capitalize" *ngFor="let pokeType of pokeTypesList" [ngValue]="pokeType" #typeList >{{pokeType.name}}</option>
+  </select>
+</ng-template>
+
+
+<ng-template #themeBtn>
+  <mat-slide-toggle (change)="toggleTheme()" [checked]="!isLight" [labelPosition]="'before'" >Dark Theme: </mat-slide-toggle>
+</ng-template>
+
+<ng-template #sortTemplate>
+  <label for="sortSelector" class="font-weight-bold" >Sort: </label>
+  <select class="poke-search-input mt-2 ml-2 mt-sm-0 text-capitalize" id="sortSelector" [(ngModel)]="selectedPokeSort" (change)="userSelectedAction(userSelectedActions.sort)" >
+    <option value="none" >None</option>
+    <option class="text-capitalize" value="name-asc" #typeList >Name: Ascending</option>
+    <option class="text-capitalize" value="name-desc" #typeList >Name: Descending</option>
+  </select>
+</ng-template>

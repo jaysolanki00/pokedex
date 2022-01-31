@@ -1,0 +1,111 @@
+@font-face {
+  font-family: "Pokemon Solid";
+  src: url("/assets/fonts/PokemonSolidNormal.woff2") format("woff2"),
+    url("/assets/fonts/PokemonSolidNormal.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pokemon Hollow";
+  src: url("/assets/fonts/PokemonHollowNormal.woff2") format("woff2"),
+    url("/assets/fonts/PokemonHollowNormal.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@primary-font: "Pokemon Hollow";
+
+@secondary-font: "Pokemon Solid";
+
+@font-poke-xxs: 4px;
+
+@font-poke-xs: 8px;
+
+@font-poke-s: 12px;
+
+@font-poke-sm: 16px;
+
+@font-poke-m: 20px;
+
+@font-poke-md: 24px;
+
+@font-poke-l: 28px;
+
+@font-poke-lg: 32px;
+
+@font-poke-xl: 36px;
+
+@font-poke-xxl: 40px;
+
+// font-sizes
+
+.font-xxs {
+  font-size: @font-poke-xxs !important;
+}
+.font-xs {
+  font-size: @font-poke-xs !important;
+}
+.font-s {
+  font-size: @font-poke-s !important;
+}
+.font-sm {
+  font-size: @font-poke-sm !important;
+}
+.font-m {
+  font-size: @font-poke-m !important;
+}
+.font-md {
+  font-size: @font-poke-md !important;
+}
+.font-l {
+  font-size: @font-poke-l !important;
+}
+.font-lg {
+  font-size: @font-poke-lg !important;
+}
+.font-xl {
+  font-size: @font-poke-xl !important;
+}
+.font-xxl {
+  font-size: @font-poke-xxl !important;
+}
+
+.apply-poke-font-hollow() {
+  font-family: @primary-font, @secondary-font, "SANS";
+  font-weight: normal;
+  font-style: normal;
+}
+
+.poke-font-hollow {
+  .apply-poke-font-hollow();
+}
+
+.apply-poke-font-dark() {
+  font-family: @secondary-font, @primary-font, "SANS";
+  font-weight: normal;
+  font-style: normal;
+}
+
+.poke-font-dark {
+  .apply-poke-font-dark();
+}
+
+.poke-card-body-title {
+  font-size: @font-poke-md;
+  .apply-poke-font-hollow();
+}
+
+.front-error-message {
+  .apply-poke-font-dark();
+  text-align: center;
+  font-size: @font-poke-xxl;
+}
+
+.poke-type-tile-font() {
+  font-size: @font-poke-s;
+}
+
+.scroll-to-top-btn {
+  font-size: @font-poke-m;
+}

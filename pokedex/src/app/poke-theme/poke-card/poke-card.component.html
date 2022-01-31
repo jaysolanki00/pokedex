@@ -1,0 +1,89 @@
+<ng-container *ngTemplateOutlet="(miniPokemon && !pokemon) || ( pokemon && pokemon.pokedexNumber.length < 4) ? pokeTile : null"></ng-container>
+
+<ng-template #pokeTile>
+  <div class="poke-card-wrapper" [ngClass]="{'poke-card-disabled' : isDisabled}">
+    <div class="poke-card-top-left-badge" *ngIf="pokemon?.pokedexNumber">
+      #{{pokemon?.pokedexNumber}}
+    </div>
+    <div class="poke-card-image" >
+    <poke-loadingspinner [isLoading]="isLoading" *ngIf="isLoading" [ngClass]="{'d-none': !isLoading}" ></poke-loadingspinner>
+        <div *ngIf="pokemon">
+            <img src="/assets/pokeImages/{{pokemon?.pokedexNumber}}.png"
+            *ngIf="pokemon?.pokedexNumber != null && pokemon?.pokedexNumber?.length < 4; else defaultPokeImage" alt="Image For {{pokemon?.name}}"
+                (error)="errorImage(imageElem, pokemon.sprites.front_default)" #imageElem>
+        </div>
+    </div>
+    <div class="poke-card-body">
+        <div class="poke-card-body-icon-wrapper">
+        </div>
+        <div class=".poke-card-body-text-wrapper">
+            <div class="poke-card-body-title" [ngClass]="textClass">{{miniPokemon.name}}</div>
+        </div>
+        <div *ngIf="pokemon" class="poke-card-body-desc font-s">
+          <ng-container *ngTemplateOutlet="pokeAbilities"></ng-container>
+          <ng-container>
+            <div><span class="poke-card-label" >Weight: </span><span>{{pokemon.weight * 100/1000}} kg</span></div>
+            <div><span class="poke-card-label" >Height: </span><span *ngIf="pokemon?.height">{{pokemon.height*100/1000}} m</span></div>
+          </ng-container>
+          <ng-container *ngTemplateOutlet="pokeTypes"></ng-container>
+          <ng-container *ngTemplateOutlet="evolutionBody"></ng-container>
+        </div>
+    </div>
+</div>
+
+<ng-template #defaultProfilePic>
+    <span class="{{placeholderIcon}} placeholder-icon"></span>
+</ng-template>
+</ng-template>
+
+<ng-template #pokeAbilities>
+  <div ><span class="poke-card-label" >Abilities: </span> 
+  <span class="text-capitalize" *ngFor="let pokeAbility of pokemon.knownAbilities; let i = index"> {{pokeAbility.ability.name}}{{ i === pokemon.knownAbilities.length-1 ? '.' : ',' }}</span>
+  </div>
+</ng-template>
+
+<ng-template #defaultPokeImage>
+  <div class="text-center">
+    <img class="card-img-default" src="/assets/poke-types/404_{{pokemon.types[0].type.name}}.png" alt="Default Pokemon Image">
+    <div >
+      <span *ngFor="let pokeType of pokemon.types" class="poke-type-{{pokeType.type.name}} ml-2">{{pokeType.type.name}} </span>
+    </div>  
+  </div>
+</ng-template>
+
+<ng-template #pokeTypes>
+  <div class="overflow-hidden">
+    <span class="poke-card-label mr-2">Type:</span>
+    <ng-container *ngFor="let pokeType of pokemon.types">
+      <span class="poke-type-{{pokeType.type.name}} poke-clickable font-s" [routerLink]="['type/'+pokeType.type.name]" >{{pokeType.type.name}} </span>
+    </ng-container>  
+  </div>
+</ng-template>
+
+<ng-template #evolutionBody>
+
+  <div class="mt-2 text-capitalize mr-3" *ngIf="pokemon.pokeEvolution">
+    <span class="poke-card-label">Evolution: </span>
+    <span> {{pokemon.pokeEvolution.chain.species.name}} </span>
+    <ng-container *ngTemplateOutlet="pokemon.pokeEvolution.chain.species.name !== 'eevee' ? simpleEvolution : complexEvolution"></ng-container>
+  </div>
+  <div >   
+  </div>
+  
+  <ng-template #simpleEvolution>
+    <span *ngFor="let evolution of pokemon.pokeEvolution.chain.evolves_to" >
+      <span class="fa fa-arrow-right"></span> <span> {{evolution.species.name}} </span>      
+      <span *ngFor="let poke of evolution.evolves_to">
+        <span class="fa fa-arrow-right"></span> {{poke.species.name}}
+      </span>      
+    </span>
+  </ng-template>
+
+  <ng-template #complexEvolution>
+    <ng-container >
+      <span class="fa fa-arrow-right"></span>
+      {{ pokemon.pokeEvolution.chain.species.name == miniPokemon.name? '???' : miniPokemon.name }}
+    </ng-container>
+  </ng-template>  
+</ng-template>
+

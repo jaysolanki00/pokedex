@@ -1,0 +1,264 @@
+@import './_colors.less';
+@import './_typography.less';
+@import './_theme.less';
+@import './_poke_styles.less';
+@import './_container.less';
+
+
+body {
+  margin: 0;
+}
+
+.poke-search-input {
+  height: calc(1.5em + .75rem + 2px);
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  background-clip: padding-box;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  vertical-align: middle;
+}
+
+.light-bg {
+  .getLightTheme();
+  background-color: @theme-poke-primary-bg;
+  color: @theme-poke-primary-color;
+  min-height: 100vh;
+  .poke-card-body, .poke-card-image {
+    background-color: @theme-poke-card-bg;
+  }
+
+  .poke-search-input {
+    color: @theme-search-box-color;
+    background-color: @theme-search-box-bg;
+    border: 1px solid @theme-search-border;
+  }
+
+  .poke-card-body-title {
+    color: @theme-poke-primary-color
+  }
+
+  .poke-card-wrapper {
+    &:hover, &:active, &:focus {
+      border-color: @theme-card-hover;
+    }
+  }
+
+  .poke-card-top-left-badge {
+    background-color: @theme-card-top-left-badge-bg;
+    color: @theme-card-top-left-badge-color;
+  }
+
+  .pokeball {
+    background-color: @theme-pokeball-secondary;
+    border: 3px solid ;
+  }
+
+  .pokeball:before{
+    background-color: @theme-pokeball-secondary;
+  }
+
+  .pokeball:after{
+    background-color: @theme-pokeball-primary;
+  }
+
+  .mat-dialog-container {
+    background: inherit
+  }
+
+  // ::-moz-selection { /* Code for Firefox */
+  //   color: @theme-pokeball-secondary;
+  //   background: @theme-pokeball-primary;
+  // }
+  
+  // ::selection {
+  //   color: @theme-pokeball-secondary;
+  //   background: @theme-pokeball-primary;
+  // }
+ 
+}
+
+.dark-bg {
+  .getDarkTheme();
+  background-color: @theme-poke-primary-bg;
+  color: @theme-poke-primary-color;
+  min-height: 100vh;
+  .poke-card-body, .poke-card-image {
+    background-color: @theme-poke-card-bg;
+  }
+
+  .poke-card-body-title {
+    color: @theme-poke-primary-color
+  }
+
+  .poke-card-top-left-badge {
+    background-color: @theme-card-top-left-badge-bg;
+    color: @theme-card-top-left-badge-color;
+  }
+
+  .poke-search-input {
+    background-color: @theme-search-box-bg;
+    color: @theme-search-box-color;
+    border: 1px solid @theme-search-border;
+  }
+
+  .poke-card-wrapper {
+    &:hover, &:active, &:focus {
+      border-color: @theme-card-hover;
+    }
+  }
+  
+  .pokeball {
+    background-color: @theme-pokeball-secondary;
+    border: 3px solid @theme-poke-primary-color
+  }
+
+  .pokeball:before{
+    background-color: @theme-pokeball-secondary;
+    color: @theme-pokeball-primary;
+  }
+
+  .pokeball:after{
+    background-color: @theme-pokeball-primary;
+    border-bottom: none !important;
+  }
+
+  // ::-moz-selection { /* Code for Firefox */
+  //   color: @theme-pokeball-secondary;
+  //   background: @theme-pokeball-primary;
+  // }
+  
+  // ::selection {
+  //   color: @theme-pokeball-secondary;
+  //   background: @theme-pokeball-primary;
+  // }
+
+}
+
+.mat-dialog-container {
+  background: inherit;
+  padding: 0 !important;
+  // width: ~"calc(100vw)" !important;
+  // height: ~"calc(100hw)" !important;
+
+}
+
+.poke-card-body-text-wrapper {
+  &:after {
+    background: linear-gradient(270deg, @color-poke-pokeball-grey 0%, transparent 50%);
+  }
+}
+
+.card {
+  border-radius: 0.75rem !important;
+  .card-img-right {
+    max-height: 96px;
+    max-width: 96px;
+  }
+}
+
+.btn-poke-warning {
+  background-color: @color-poke-warning-primary !important;
+  border-color: @color-poke-warning-primary !important;
+}
+
+.btn-poke-warning:hover {
+  background-color: @color-poke-warning-border !important;
+  border-color: @color-poke-warning-border !important;
+}
+
+
+.btn-warning.focus, .btn-warning:focus {
+  box-shadow: 0 0 0 0.08rem @color-poke-warning-shadow !important;
+}
+
+
+// scroll Bar
+
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 1px @color-card-bg-dark-theme; 
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: @theme-scroll-bar-color;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: @theme-scroll-bar-color; 
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+html {
+  scrollbar-width: none;
+}
+
+
+.poke-card-label {
+  font-weight: bold;
+}
+
+
+
+.mat-dialog-container {
+  .poke-card-wrapper {
+    margin: 0;
+    // width: auto;
+    &:hover, &:active, &:focus {
+      outline: none;
+      transform: none;
+    }
+    .poke-card-image {
+      height: 160px;
+    }
+    .poke-card-body-desc {
+      margin-left: 0;
+    }
+  }
+  .poke-card-wrapper.dark-bg-card-wrapper{
+    background-color: @color-card-bg-dark-theme;
+    color: @color-poke-white;
+  }
+  .poke-card-wrapper.light-bg-card-wrapper{
+    background-color: @color-card-bg-light-theme;
+    color: @color-poke-black;
+  }
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: @color-poke-black;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: @color-search-border;
+}
+
+.mat-slide-toggle.mat-checked .mat-ripple-element {
+  background-color: @color-poke-white;
+}
+
+.mat-slide-toggle {
+  line-height: none !important;
+}
+
+.poke-clickable {
+  cursor: pointer;
+}
+
+.scroll-ovf {
+  overflow-y: scroll;
+  margin-top: 12px;
+}

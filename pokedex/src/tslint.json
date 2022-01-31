@@ -1,0 +1,16 @@
+{
+  "extends": "../tslint.json",
+  "rules": {
+    "directive-selector": [
+      true,
+      "attribute",
+      "poke"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      "poke",
+      "kebab-case"
+    ]
+  }
+}

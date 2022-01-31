@@ -1,0 +1,13 @@
+<div class="container-fluid scroll-ovf"
+infiniteScroll
+[infiniteScrollDistance]="2"
+[infiniteScrollThrottle]="50"
+[scrollWindow]="false"
+(scrolled)="onScroll()">
+  <div class="row justify-content-center">
+    <ng-container *ngFor="let pokemon of pokeList">
+      <poke-card [miniPokemon]="pokemon" *ngIf="pokemon && pokemon.url"
+        (pokemonDetails)="setPokeDetailsInArray($event)"></poke-card>
+    </ng-container>
+  </div>
+</div>
